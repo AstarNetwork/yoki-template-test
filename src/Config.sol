@@ -8,5 +8,4 @@ contract Config {
     function setSupply(uint256 newNumber) public {
         maxSupply = newNumber;
     }
-
 }

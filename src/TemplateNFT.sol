@@ -20,10 +20,7 @@ contract TemplateNFT is ERC721A, ERC2981, AccessControl {
     bool public paused;
 
     //@notice constructor
-    constructor(
-        string memory name,
-        string memory symbol
-    ) ERC721A(name, symbol) {
+    constructor(string memory name, string memory symbol) ERC721A(name, symbol) {
         baseContractURI = "ipfs://contract";
         baseURI = "ipfs://example.com/";
         baseExtension = ".json";
@@ -43,17 +40,10 @@ contract TemplateNFT is ERC721A, ERC2981, AccessControl {
     }
 
     //@notice tokenURI override
-    function tokenURI(
-        uint256 tokenId
-    ) public view override(ERC721A) returns (string memory) {
+    function tokenURI(uint256 tokenId) public view override(ERC721A) returns (string memory) {
         require(_exists(tokenId), "Non Exist token");
 
-        return
-            bytes(baseURI).length > 0
-                ? string(
-                    abi.encodePacked(baseURI, tokenId.toString(), baseExtension)
-                )
-                : "";
+        return bytes(baseURI).length > 0 ? string(abi.encodePacked(baseURI, tokenId.toString(), baseExtension)) : "";
     }
 
     //@notice mint function
@@ -68,30 +58,22 @@ contract TemplateNFT is ERC721A, ERC2981, AccessControl {
     }
 
     //@notice to contractUri
-    function setBaseContractURI(
-        string memory _newBaseContractURI
-    ) public onlyRole(DEFAULT_ADMIN_ROLE) {
+    function setBaseContractURI(string memory _newBaseContractURI) public onlyRole(DEFAULT_ADMIN_ROLE) {
         baseContractURI = _newBaseContractURI;
     }
 
     //@notice to tokenUri
-    function setBaseURI(
-        string memory _newBaseURI
-    ) public onlyRole(DEFAULT_ADMIN_ROLE) {
+    function setBaseURI(string memory _newBaseURI) public onlyRole(DEFAULT_ADMIN_ROLE) {
         baseURI = _newBaseURI;
     }
 
     //@notice to tokenUri
-    function setBaseExtension(
-        string memory _newBaseExtension
-    ) public onlyRole(DEFAULT_ADMIN_ROLE) {
+    function setBaseExtension(string memory _newBaseExtension) public onlyRole(DEFAULT_ADMIN_ROLE) {
         baseExtension = _newBaseExtension;
     }
 
     //@notice maxSupply
-    function setMaxSupply(
-        uint256 _newMaxSupply
-    ) public onlyRole(DEFAULT_ADMIN_ROLE) {
+    function setMaxSupply(uint256 _newMaxSupply) public onlyRole(DEFAULT_ADMIN_ROLE) {
         maxSupply = _newMaxSupply;
     }
 
@@ -111,43 +93,31 @@ contract TemplateNFT is ERC721A, ERC2981, AccessControl {
     }
 
     //@notice startTime
-    function setStartTime(
-        uint256 _newStartTime
-    ) public onlyRole(DEFAULT_ADMIN_ROLE) {
+    function setStartTime(uint256 _newStartTime) public onlyRole(DEFAULT_ADMIN_ROLE) {
         startTime = _newStartTime;
     }
 
     //@notice set Royality
-    function setDefaultRoyalty(
-        address _receiver,
-        uint96 _feeNumerator
-    ) external onlyRole(DEFAULT_ADMIN_ROLE) {
+    function setDefaultRoyalty(address _receiver, uint96 _feeNumerator) external onlyRole(DEFAULT_ADMIN_ROLE) {
         _setDefaultRoyalty(_receiver, _feeNumerator);
     }
 
     //@notice locked
-    function _beforeTokenTransfers(
-        address from,
-        address,
-        uint256,
-        uint256
-    ) internal virtual override {
+    function _beforeTokenTransfers(address from, address, uint256, uint256) internal virtual override {
         if (locked) {
-            require(
-                from == address(0),
-                "BaseERC721: Transfers are disabled when Locked is true"
-            );
+            require(from == address(0), "BaseERC721: Transfers are disabled when Locked is true");
         }
     }
 
     //@notice ERC2981 override
-    function supportsInterface(
-        bytes4 interfaceId
-    ) public view override(ERC721A, ERC2981, AccessControl) returns (bool) {
-        return
-            ERC721A.supportsInterface(interfaceId) ||
-            ERC2981.supportsInterface(interfaceId) ||
-            AccessControl.supportsInterface(interfaceId);
+    function supportsInterface(bytes4 interfaceId)
+        public
+        view
+        override(ERC721A, ERC2981, AccessControl)
+        returns (bool)
+    {
+        return ERC721A.supportsInterface(interfaceId) || ERC2981.supportsInterface(interfaceId)
+            || AccessControl.supportsInterface(interfaceId);
     }
 
     //@notice ERC721A override

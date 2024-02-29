@@ -1,66 +1,58 @@
-## Foundry
+## Template tests for contracts participating in Yoki Origins
 
 **Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
 
-Foundry consists of:
+## Usage for Yoki contracts:
+### Requirements
+All contracts participating in Yoki Origins should use this template to ensure that they are compatible with the Yoki Origins ecosystem.
 
--   **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
--   **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
--   **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
--   **Chisel**: Fast, utilitarian, and verbose solidity REPL.
+Main requirements used for this template:
+- [ ] ER721, ERC721A or ERC1155
+- [ ] Minting function is format: `mint(address, uint256)` 
+- [ ] Allowed minting is only for MINTER_ROLE 
+- [ ] Existance of `tokenUri()` for ERC721
+- [ ] Existance of `uri()` for ERC1155
+- [ ] Variables `name` and `symbol` are set in contract
 
-## Documentation
+### How to use template tests
+1. Install Foundry (follow the instructions in the Foundry [documentation](https://book.getfoundry.sh/getting-started/installation))
+2. Clone this repository
+3. Run `forge test` to make sure your environment is properly set up
+4. Replace your code with Template.sol
+5. Rename your contract to be named `TemplateNFT` or adjust test files to match your contract name
+6. Configure variables in Config.sol to match your contract
+7. Check that all libraries are set up correctly in `remappings.txt`
+8. Run `forge test` to ensure that your contract is compatible with Yoki Origins
 
-https://book.getfoundry.sh/
 
-## Usage
+### Some useful commands:
 
-### Build
+#### Build
 
 ```shell
 $ forge build
 ```
 
-### Test
+#### Test
 
 ```shell
 $ forge test
 ```
 
-### Format
+#### Format
 
 ```shell
 $ forge fmt
 ```
 
-### Gas Snapshots
+#### Gas Snapshots
 
 ```shell
 $ forge snapshot
 ```
 
-### Anvil
-
-```shell
-$ anvil
-```
-
-### Deploy
-
-```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
-```
-
-### Cast
-
-```shell
-$ cast <subcommand>
-```
-
-### Help
+#### Help
 
 ```shell
 $ forge --help
-$ anvil --help
-$ cast --help
 ```

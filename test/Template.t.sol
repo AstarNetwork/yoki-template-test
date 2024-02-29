@@ -16,10 +16,7 @@ contract TemplateNFTTest is Test {
 
     function test_MinterRole() public {
         templateNFT.grantRole(templateNFT.MINTER_ROLE(), address(this));
-        assertEq(
-            templateNFT.hasRole(templateNFT.MINTER_ROLE(), address(this)),
-            true
-        );
+        assertEq(templateNFT.hasRole(templateNFT.MINTER_ROLE(), address(this)), true);
     }
 
     function test_MintOne() public {
@@ -42,20 +39,11 @@ contract TemplateNFTTest is Test {
 
         // get the token URI
         string memory uri = templateNFT.tokenURI(1);
-        assertEq(
-            uri,
-            string.concat(config.baseURI(), "1.json"),
-            "unexpected token URI"
-        );
+        assertEq(uri, string.concat(config.baseURI(), "1.json"), "unexpected token URI");
     }
 
-    function testFails_TokenUriNotExist() public {
-        // alice mints 1 token
-        address alice = address(1234);
-        templateNFT.grantRole(templateNFT.MINTER_ROLE(), address(this));
-        templateNFT.mint(alice, 1);
-
-        // get the token URI
+    function testFails_TokenUriNotExist() public view {
+        // get the token URI fails
         templateNFT.tokenURI(config.maxSupply() + 1);
     }
 }
