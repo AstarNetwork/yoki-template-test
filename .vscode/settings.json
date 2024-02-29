@@ -1,7 +1,7 @@
 {
     "editor.formatOnSave": true,
     "[solidity]": {
-        "editor.defaultFormatter": "GitHub.copilot",
+        "editor.defaultFormatter": "NomicFoundation.hardhat-solidity",
     },
     "solidity.formatter": "forge",
     "solidity.compileUsingRemoteVersion": "v0.8.20"

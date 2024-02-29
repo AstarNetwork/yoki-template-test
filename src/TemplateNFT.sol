@@ -8,33 +8,24 @@ import "@openzeppelin/contracts/utils/Strings.sol";
 
 contract TemplateNFT is ERC721A, ERC2981, AccessControl {
     using Strings for uint256;
-    
+
     bytes32 public constant MINTER_ROLE = keccak256("MINTER_ROLE");
-
     string public baseContractURI;
-
     string public baseURI;
-
     string public baseExtension;
-
     uint256 public maxSupply;
-
     uint256 public cost;
-
     uint256 public startTime;
-
     bool public locked;
-
     bool public paused;
 
     //@notice constructor
     constructor(
         string memory name,
         string memory symbol
-    ) ERC721A(name, symbol) 
-    {
+    ) ERC721A(name, symbol) {
         baseContractURI = "ipfs://contract";
-        baseURI = "ipfs://";
+        baseURI = "ipfs://example.com/";
         baseExtension = ".json";
         cost = 0.01 ether;
         maxSupply = 10000;
@@ -52,32 +43,23 @@ contract TemplateNFT is ERC721A, ERC2981, AccessControl {
     }
 
     //@notice tokenURI override
-    function tokenURI(uint256 tokenId)
-        public
-        view
-        override(ERC721A)
-        returns (string memory)
-    {
-        require(
-            _exists(tokenId),
-            "Non Exist token"
-        );
+    function tokenURI(
+        uint256 tokenId
+    ) public view override(ERC721A) returns (string memory) {
+        require(_exists(tokenId), "Non Exist token");
 
-        return bytes(baseURI).length > 0
+        return
+            bytes(baseURI).length > 0
                 ? string(
-                    abi.encodePacked(
-                        baseURI,
-                        tokenId.toString(),
-                        baseExtension
-                    )
+                    abi.encodePacked(baseURI, tokenId.toString(), baseExtension)
                 )
                 : "";
     }
 
     //@notice mint function
     function mint(address to, uint256 amount) public onlyRole(MINTER_ROLE) {
-        require(!paused,"Paused");
-        if (maxSupply > 0){
+        require(!paused, "Paused");
+        if (maxSupply > 0) {
             require(totalSupply() + amount <= maxSupply, "Max Supply");
         }
 
@@ -86,22 +68,30 @@ contract TemplateNFT is ERC721A, ERC2981, AccessControl {
     }
 
     //@notice to contractUri
-    function setBaseContractURI(string memory _newBaseContractURI) public onlyRole(DEFAULT_ADMIN_ROLE) {
+    function setBaseContractURI(
+        string memory _newBaseContractURI
+    ) public onlyRole(DEFAULT_ADMIN_ROLE) {
         baseContractURI = _newBaseContractURI;
     }
 
     //@notice to tokenUri
-    function setBaseURI(string memory _newBaseURI) public onlyRole(DEFAULT_ADMIN_ROLE) {
+    function setBaseURI(
+        string memory _newBaseURI
+    ) public onlyRole(DEFAULT_ADMIN_ROLE) {
         baseURI = _newBaseURI;
     }
 
     //@notice to tokenUri
-    function setBaseExtension(string memory _newBaseExtension) public onlyRole(DEFAULT_ADMIN_ROLE) {
+    function setBaseExtension(
+        string memory _newBaseExtension
+    ) public onlyRole(DEFAULT_ADMIN_ROLE) {
         baseExtension = _newBaseExtension;
     }
 
     //@notice maxSupply
-    function setMaxSupply(uint256 _newMaxSupply) public onlyRole(DEFAULT_ADMIN_ROLE) {
+    function setMaxSupply(
+        uint256 _newMaxSupply
+    ) public onlyRole(DEFAULT_ADMIN_ROLE) {
         maxSupply = _newMaxSupply;
     }
 
@@ -121,7 +111,9 @@ contract TemplateNFT is ERC721A, ERC2981, AccessControl {
     }
 
     //@notice startTime
-    function setStartTime(uint256 _newStartTime) public onlyRole(DEFAULT_ADMIN_ROLE) {
+    function setStartTime(
+        uint256 _newStartTime
+    ) public onlyRole(DEFAULT_ADMIN_ROLE) {
         startTime = _newStartTime;
     }
 
@@ -149,12 +141,9 @@ contract TemplateNFT is ERC721A, ERC2981, AccessControl {
     }
 
     //@notice ERC2981 override
-    function supportsInterface(bytes4 interfaceId)
-        public
-        view
-        override(ERC721A, ERC2981, AccessControl)
-        returns (bool)
-    {
+    function supportsInterface(
+        bytes4 interfaceId
+    ) public view override(ERC721A, ERC2981, AccessControl) returns (bool) {
         return
             ERC721A.supportsInterface(interfaceId) ||
             ERC2981.supportsInterface(interfaceId) ||
