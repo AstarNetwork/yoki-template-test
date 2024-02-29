@@ -6,7 +6,7 @@ import "@openzeppelin/contracts/token/common/ERC2981.sol";
 import "@openzeppelin/contracts/access/AccessControl.sol";
 import "@openzeppelin/contracts/utils/Strings.sol";
 
-contract PartnerNFT is ERC721A, ERC2981, AccessControl {
+contract TemplateNFT is ERC721A, ERC2981, AccessControl {
     using Strings for uint256;
     
     bytes32 public constant MINTER_ROLE = keccak256("MINTER_ROLE");
