@@ -2,8 +2,8 @@
 pragma solidity ^0.8.20;
 import "forge-std/console.sol";
 import "forge-std/Test.sol";
-import "../src/ConfigTemplate.sol";
-import "../src/TestMeTemplate.sol";
+import {TestMe} from "../src/TestMeTemplateERC721.sol";
+import {Config} from "../src/ConfigTemplate.sol";
 
 contract BaseTemplateTest is Test {
     TestMe public testMe;

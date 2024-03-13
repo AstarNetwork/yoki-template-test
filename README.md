@@ -21,8 +21,8 @@ Main requirements used for this template:
 4. Create a new forlder with your contract name & date
 5. Add a `Config.sol` with your metadata configs
 6. Add a `TestMe.sol` with your contract code and rename your contract `TestMe`
-7. Create a new file in test folder with your contract name & date
-8. Copy the code from BaseTemplate and adapt the constructor and _callMint()
+7. Create a new file in test folder with your contract name
+8. Copy the code from BaseTemplate and adapt the constructor and _callMint() and imports
 9. Run `forge test -vvv` to ensure that your contract is compatible with Yoki Origins
 
 ### Some useful commands:
