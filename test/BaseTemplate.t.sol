@@ -1,11 +1,11 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.20;
 import "forge-std/console.sol";
-import {Test, console} from "forge-std/Test.sol";
-import {TestMe} from "../src/TestMe.sol";
-import {Config} from "../src/Config.sol";
+import "forge-std/Test.sol";
+import "../src/ConfigTemplate.sol";
+import "../src/TestMeTemplate.sol";
 
-contract TemplateTest is Test {
+contract BaseTemplateTest is Test {
     TestMe public testMe;
     Config public config;
 
@@ -23,17 +23,15 @@ contract TemplateTest is Test {
         vm.deal(address(this), 100 ether);
     }
 
-    // IMPORTANT: comment relevant lines
+    // IMPORTANT: uncomment relevant line
     function _callMint(address to, uint256 amount) internal {
         /*
-        If min is payable please comment the line:
+        If mint is non-payable please add this line:
             testMe.mint(to, amount);
-        If mint is non payable please comment the lines:
+        If mint is payable please add the lines:
             uint256 price = config.mintPrice();
             testMe.mint{value: price}(to, amount);
         */
-//        uint256 price = config.mintPrice();
-//        testMe.mint{value: price}(to, amount);
         testMe.mint(to, amount);
     }
 
