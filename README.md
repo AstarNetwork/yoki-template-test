@@ -21,7 +21,7 @@ Main requirements used for this template:
 4. Replace your contract code in `src/TestMe.sol`
 5. Rename your contract to be named `TestMe`
 6. Configure variables in `Config.sol` to match your metadata configs
-7. Configure your constructor in `test/Template.t.sol`
+7. Configure your constructor in `test/Template.t.sol` and comment the relevant line in `_callMint()`
 8. Run `forge test -vvv` to ensure that your contract is compatible with Yoki Origins
 
 ### Some useful commands:

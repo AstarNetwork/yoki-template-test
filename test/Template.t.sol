@@ -17,10 +17,24 @@ contract TemplateTest is Test {
         you can use:
             testMe = new TestMe(address(this), address(this), "NAME", "SYMBOL", 1000, 1, "ipfs://example.com/");
         */
-        testMe = new TestMe(address(this), "NAME", "SYMBOL");
+        testMe = new TestMe(address(this), address(this), "NAME", "SYMBOL", 3, "ipfs");
         config = new Config();
 
         vm.deal(address(this), 100 ether);
+    }
+
+    // IMPORTANT: comment relevant lines
+    function _callMint(address to, uint256 amount) internal {
+        /*
+        If min is payable please comment the line:
+            testMe.mint(to, amount);
+        If mint is non payable please comment the lines:
+            uint256 price = config.mintPrice();
+            testMe.mint{value: price}(to, amount);
+        */
+//        uint256 price = config.mintPrice();
+//        testMe.mint{value: price}(to, amount);
+        testMe.mint(to, amount);
     }
 
     function test_EnsureMinterRole() public {
@@ -31,7 +45,7 @@ contract TemplateTest is Test {
     function test_MintOne() public {
         address alice = makeAddr("alice");
         testMe.grantRole(testMe.MINTER_ROLE(), address(this));
-        testMe.mint{value: config.mintPrice()}(alice, 1);
+        _callMint(alice, 1);
     }
 
     function test_MintWithNonMinterRoleFails() public {
@@ -40,19 +54,17 @@ contract TemplateTest is Test {
         testMe.revokeRole(testMe.MINTER_ROLE(), address(this));
         uint256 balanceBefore = testMe.balanceOf(alice);
 
-        uint256 price = config.mintPrice();
         vm.expectRevert();
-        testMe.mint{value: price}(alice, 1);
+        _callMint(alice, 1);
         assertEq(testMe.balanceOf(alice), balanceBefore);
     }
 
     function test_UserCannotMint() public {
         address alice = makeAddr("alice");
         vm.deal(alice, 100 ether);
-        uint256 price = config.mintPrice();
         vm.expectRevert();
         vm.prank(alice);
-        testMe.mint{value: price}(alice, 1);
+        _callMint(alice, 1);
     }
 
     function test_MaxMintPerUser() public {
@@ -62,40 +74,42 @@ contract TemplateTest is Test {
         address alice = makeAddr("alice");
         vm.deal(alice, 1 ether);
         for (uint256 i = 0; i < config.maxMintPerUser(); i++) {
-            testMe.mint{value: config.mintPrice()}(alice, 1);
+            _callMint(alice, 1);
         }
 
-        uint256 price = config.mintPrice();
         vm.expectRevert();
-        testMe.mint{value: price}(alice, 1);
+        _callMint(alice, 1);
     }
 
     function test_maxSuppy() public {
         if (config.maxSupply() == 0) {
             return;
         }
-        uint256 price = config.mintPrice();
+
         for (uint256 i = 0; i < config.maxSupply(); i++) {
             address someUser = makeAddr(string(abi.encode(i)));
             vm.deal(someUser, 1 ether);
-            testMe.mint{value: price}(someUser, 1);
+            _callMint(someUser, 1);
         }
 
         address alice = makeAddr("alice");
         vm.expectRevert();
         vm.deal(alice, 1 ether);
-        testMe.mint{value: price}(alice, 1);
+        _callMint(alice, 1);
     }
 
     function test_noFreeMint() public {
+        if (config.mintPrice() == 0) {
+            return;
+        }
         address alice = makeAddr("alice");
         vm.expectRevert();
-        testMe.mint{value: 0}(alice, 1);
+        _callMint(alice, 1);
     }
 
     function test_getTokenUri() public {
         address alice = makeAddr("alice");
-        testMe.mint{value: config.mintPrice()}(alice, 1);
+        _callMint(alice, 1);
         string memory tokenUri = testMe.tokenURI(0);
         console.log("Token URI: %s", tokenUri);
     }
@@ -104,7 +118,7 @@ contract TemplateTest is Test {
         address alice = makeAddr("alice");
         testMe.grantRole(testMe.MINTER_ROLE(), address(this));
         assertEq(testMe.totalSupply(), 0);
-        testMe.mint{value: config.mintPrice()}(alice, 1);
+        _callMint(alice, 1);
         assertEq(testMe.totalSupply(), 1);
     }
 }
