@@ -107,18 +107,23 @@ contract TemplateTest is Test {
         _callMint(alice, 1);
     }
 
-    function test_getTokenUri() public {
-        address alice = makeAddr("alice");
-        _callMint(alice, 1);
-        string memory tokenUri = testMe.tokenURI(0);
-        console.log("Token URI: %s", tokenUri);
-    }
-
     function test_totalSupplyIsIncreasing() public {
         address alice = makeAddr("alice");
         testMe.grantRole(testMe.MINTER_ROLE(), address(this));
         assertEq(testMe.totalSupply(), 0);
         _callMint(alice, 1);
         assertEq(testMe.totalSupply(), 1);
+    }
+
+    function test_mint5AndPrintsTokenUri() public {
+        for (uint256 i = 0; i < 5; i++) {
+            address someUser = makeAddr(string(abi.encode(i)));
+            vm.deal(someUser, 1 ether);
+            _callMint(someUser, 1);
+        }
+        for (uint256 i = 0; i < 5; i++) {
+            string memory tokenUri = testMe.tokenURI(i);
+            console.log("Token URI: %s", tokenUri);
+        }
     }
 }
