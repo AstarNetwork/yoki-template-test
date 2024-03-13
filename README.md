@@ -18,11 +18,12 @@ Main requirements used for this template:
 1. Install Foundry (follow the instructions in the Foundry [documentation](https://book.getfoundry.sh/getting-started/installation))
 2. Clone this repository
 3. Run `forge test` to make sure your environment is properly set up
-4. Replace your contract code in `src/TestMe.sol`
-5. Rename your contract to be named `TestMe`
-6. Configure variables in `Config.sol` to match your metadata configs
-7. Configure your constructor in `test/Template.t.sol` and comment the relevant line in `_callMint()`
-8. Run `forge test -vvv` to ensure that your contract is compatible with Yoki Origins
+4. Create a new forlder with your contract name & date
+5. Add a `Config.sol` with your metadata configs
+6. Add a `TestMe.sol` with your contract code and rename your contract `TestMe`
+7. Create a new file in test folder with your contract name & date
+8. Copy the code from BaseTemplate and adapt the constructor and _callMint()
+9. Run `forge test -vvv` to ensure that your contract is compatible with Yoki Origins
 
 ### Some useful commands:
 
