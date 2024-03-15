@@ -6,8 +6,4 @@ contract Config {
     string public baseURI = "ipfs://example.com/";
     uint256 public maxMintPerUser = 0; // 0 for unlimited
     uint256 public mintPrice = 0.0005 ether; // 0 for free
-
-    function setSupply(uint256 newNumber) public {
-        maxSupply = newNumber;
-    }
 }

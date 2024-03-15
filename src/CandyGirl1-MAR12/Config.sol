@@ -7,7 +7,4 @@ contract Config {
     uint256 public maxMintPerUser = 3; // 0 for unlimited
     uint256 public mintPrice = 0; // 0 for free
 
-    function setSupply(uint256 newNumber) public {
-        maxSupply = newNumber;
-    }
 }
