@@ -18,12 +18,12 @@ Main requirements used for this template:
 1. Install Foundry (follow the instructions in the Foundry [documentation](https://book.getfoundry.sh/getting-started/installation))
 2. Clone this repository
 3. Run `forge test` to make sure your environment is properly set up
-4. Replace your code with Template.sol
-5. Rename your contract to be named `TemplateNFT` or adjust test files to match your contract name
-6. Configure variables in Config.sol to match your contract
-7. Check that all libraries are set up correctly in `remappings.txt`
-8. Run `forge test` to ensure that your contract is compatible with Yoki Origins
-
+4. Create a new forlder with your contract name & date
+5. Add a `Config.sol` with your metadata configs
+6. Add a `TestMe.sol` with your contract code and rename your contract `TestMe`
+7. Create a new file in test folder with your contract name
+8. Copy the code from BaseTemplate and adapt the constructor and _callMint() and imports
+9. Run `forge test -vvv` to ensure that your contract is compatible with Yoki Origins
 
 ### Some useful commands:
 
@@ -34,9 +34,9 @@ $ forge build
 ```
 
 #### Test
-
+Test with verbose output
 ```shell
-$ forge test
+$ forge test -vvv
 ```
 
 #### Format
