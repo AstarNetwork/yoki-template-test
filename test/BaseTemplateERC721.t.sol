@@ -124,4 +124,9 @@ contract BaseTemplateTest is Test {
             console.log("Token URI: %s", tokenUri);
         }
     }
+
+    function test_totalSupplyIsPublic() public {
+        uint256 supply = testMe.totalSupply();
+        console.log("Total Supply: %s", supply);
+    }
 }
