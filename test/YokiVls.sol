@@ -134,4 +134,9 @@ contract BaseTemplateTest is Test {
         uint256 supply = testMe.totalSupply();
         console.log("Total Supply: %s", supply);
     }
+
+    function test_ownerImplemented() public {
+        address owner = testMe.owner();
+        assert(owner == address(this));
+    }
 }

@@ -5,6 +5,7 @@ import { ERC721AQueryable } from "./ERC721AQueryable.sol";
 import "./ERC721A.sol";
 import "@openzeppelin/contracts/token/common/ERC2981.sol";
 import "@openzeppelin/contracts/access/AccessControl.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
 
 interface IERC4906 {
     /// @dev This event emits when the metadata of a token is changed.
@@ -18,13 +19,13 @@ interface IERC4906 {
     event BatchMetadataUpdate(uint256 _fromTokenId, uint256 _toTokenId);
 }
 
-    error MaxSupplyOver();
-    error NotEnoughFunds(uint256 balance);
-    error NotMintable();
-    error AlreadyClaimedMax();
-    error MintAmountOver();
+error MaxSupplyOver();
+error NotEnoughFunds(uint256 balance);
+error NotMintable();
+error AlreadyClaimedMax();
+error MintAmountOver();
 
-contract TestMe is ERC721A, IERC4906, ERC721AQueryable, AccessControl, ERC2981 {
+contract TestMe is ERC721A, IERC4906, ERC721AQueryable, AccessControl, ERC2981, Ownable {
     string private constant BASE_EXTENSION = ".json";
     bytes32 public constant MINTER_ROLE = keccak256("MINTER_ROLE");
 
@@ -35,10 +36,9 @@ contract TestMe is ERC721A, IERC4906, ERC721AQueryable, AccessControl, ERC2981 {
 
     mapping(uint256 => string) private metadataURI;
 
-    constructor() ERC721A("YokiVLS", "YokiVLS") {
+    constructor() ERC721A("YokiVLS", "YokiVLS") Ownable(_msgSender()) {
         _setDefaultRoyalty(_msgSender(), 1000);
         _grantRole(DEFAULT_ADMIN_ROLE, _msgSender());
-        _grantRole(MINTER_ROLE , 0xCB1095416b6A8e0C3ea39F8fe6Df84f4179C93C2);
     }
 
     modifier whenMintable() {
