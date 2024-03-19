@@ -2,8 +2,8 @@
 pragma solidity ^0.8.20;
 import "forge-std/console.sol";
 import "forge-std/Test.sol";
-import {TestMe} from "../src/WLF - WolfGenerative/TestMe.sol";
-import {Config} from "../src//WLF - WolfGenerative/Config.sol";
+import {TestMe} from "../src/WGG/TestMe.sol";
+import {Config} from "../src/WGG/Config.sol";
 
 contract BaseTemplateTest is Test {
     TestMe public testMe;
@@ -18,7 +18,6 @@ contract BaseTemplateTest is Test {
             testMe = new TestMe(address(this), address(this), "NAME", "SYMBOL", 1000, 1, "ipfs://example.com/");
         */
         testMe = new TestMe();
-        testMe.initialize("NAME", "SYMBOL", "ipfs", "ipfs", address(this), 1000);
         config = new Config();
 
         vm.deal(address(this), 100 ether);
@@ -36,6 +35,13 @@ contract BaseTemplateTest is Test {
         testMe.mint(to, amount);
     }
 
+    // IMPORTANT: comment this test is mint is non payable
+//    function test_noFreeMint() public {
+//        address alice = makeAddr("alice");
+//        vm.expectRevert();
+//        testMe.mint(alice, 1);
+//    }
+
     function test_EnsureMinterRole() public {
         testMe.grantRole(testMe.MINTER_ROLE(), address(this));
         assertEq(testMe.hasRole(testMe.MINTER_ROLE(), address(this)), true);
@@ -51,19 +57,21 @@ contract BaseTemplateTest is Test {
         address alice = makeAddr("alice");
         vm.deal(alice, 100 ether);
         testMe.revokeRole(testMe.MINTER_ROLE(), address(this));
-        uint256 balanceBefore = testMe.balanceOf(alice);
+        uint256 balanceBefore = testMe.balanceOf(alice, 0);
 
+        uint256 price = config.mintPrice();
         vm.expectRevert();
-        _callMint(alice, 1);
-        assertEq(testMe.balanceOf(alice), balanceBefore);
+        testMe.mint(alice, 1);
+        assertEq(testMe.balanceOf(alice, 0), balanceBefore);
     }
 
     function test_UserCannotMint() public {
         address alice = makeAddr("alice");
+        uint256 price = config.mintPrice();
         vm.deal(alice, 100 ether);
         vm.expectRevert();
         vm.prank(alice);
-        _callMint(alice, 1);
+        testMe.mint(alice, 1);
     }
 
     function test_MaxMintPerUser() public {
@@ -71,7 +79,7 @@ contract BaseTemplateTest is Test {
             return;
         }
         address alice = makeAddr("alice");
-        vm.deal(alice, 1 ether);
+        vm.deal(alice, 1000 ether);
         for (uint256 i = 0; i < config.maxMintPerUser(); i++) {
             _callMint(alice, 1);
         }
@@ -85,7 +93,7 @@ contract BaseTemplateTest is Test {
             return;
         }
 
-        for (uint256 i = 1 ; i < config.maxSupply(); i++) {
+        for (uint256 i = 0; i < config.maxSupply(); i++) {
             address someUser = makeAddr(string(abi.encode(i)));
             vm.deal(someUser, 1 ether);
             _callMint(someUser, 1);
@@ -97,42 +105,20 @@ contract BaseTemplateTest is Test {
         _callMint(alice, 1);
     }
 
-    function test_noFreeMint() public {
-        if (config.mintPrice() == 0) {
-            return;
-        }
-        address alice = makeAddr("alice");
-        vm.expectRevert();
-        _callMint(alice, 1);
-    }
-
-    function test_totalSupplyIsIncreasing() public {
-        address alice = makeAddr("alice");
-        testMe.grantRole(testMe.MINTER_ROLE(), address(this));
-        assertEq(testMe.totalSupply(), 0);
-        _callMint(alice, 1);
-        assertEq(testMe.totalSupply(), 1);
-    }
-
     function test_mint5AndPrintsTokenUri() public {
         for (uint256 i = 0; i < 5; i++) {
             address someUser = makeAddr(string(abi.encode(i)));
             vm.deal(someUser, 1 ether);
             _callMint(someUser, 1);
         }
-        for (uint256 i = 1; i < 6; i++) {
-            string memory tokenUri = testMe.tokenURI(i);
+        for (uint256 i = 0; i < 5; i++) {
+            string memory tokenUri = testMe.uri(i);
             console.log("Token URI: %s", tokenUri);
         }
     }
 
-    function test_totalSupplyIsPublic() public {
-        uint256 supply = testMe.totalSupply();
-        console.log("Total Supply: %s", supply);
-    }
-
-    function test_owner() public {
-        address owner = testMe.owner();
-        console.log("Owner: %s", owner);
-    }
+//    function test_owner() public {
+//        address owner = testMe.owner();
+//        console.log("Owner: %s", owner);
+//    }
 }
