@@ -1,11 +1,13 @@
-// Sources flattened with hardhat v2.16.1 https://hardhat.org
+// Sources flattened with hardhat v2.19.5 https://hardhat.org
 
-// File @openzeppelin/contracts-upgradeable/access/IAccessControlUpgradeable.sol@v4.9.2
+// SPDX-License-Identifier: MIT AND MPL-2.0
+pragma solidity ^0.8.20;
 
-// SPDX-License-Identifier: MIT
+// File @openzeppelin/contracts-upgradeable/access/IAccessControlUpgradeable.sol@v4.9.6
+
+// Original license: SPDX_License_Identifier: MIT
 // OpenZeppelin Contracts v4.4.1 (access/IAccessControl.sol)
 
-pragma solidity ^0.8.0;
 
 /**
  * @dev External interface of AccessControl declared to support ERC165 detection.
@@ -92,11 +94,12 @@ interface IAccessControlUpgradeable {
 }
 
 
-// File @openzeppelin/contracts-upgradeable/utils/AddressUpgradeable.sol@v4.9.2
+// File @openzeppelin/contracts-upgradeable/utils/AddressUpgradeable.sol@v4.9.6
 
+// Original license: SPDX_License_Identifier: MIT
 // OpenZeppelin Contracts (last updated v4.9.0) (utils/Address.sol)
 
-pragma solidity ^0.8.1;
+
 
 /**
  * @dev Collection of functions related to the address type
@@ -339,11 +342,12 @@ library AddressUpgradeable {
 }
 
 
-// File @openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol@v4.9.2
+// File @openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol@v4.9.6
 
+// Original license: SPDX_License_Identifier: MIT
 // OpenZeppelin Contracts (last updated v4.9.0) (proxy/utils/Initializable.sol)
 
-pragma solidity ^0.8.2;
+
 
 /**
  * @dev This is a base contract to aid in writing upgradeable contracts, or any kind of contract that will be deployed
@@ -506,11 +510,12 @@ abstract contract Initializable {
 }
 
 
-// File @openzeppelin/contracts-upgradeable/utils/ContextUpgradeable.sol@v4.9.2
+// File @openzeppelin/contracts-upgradeable/utils/ContextUpgradeable.sol@v4.9.6
 
-// OpenZeppelin Contracts v4.4.1 (utils/Context.sol)
+// Original license: SPDX_License_Identifier: MIT
+// OpenZeppelin Contracts (last updated v4.9.4) (utils/Context.sol)
 
-pragma solidity ^0.8.0;
+
 
 /**
  * @dev Provides information about the current execution context, including the
@@ -536,6 +541,10 @@ abstract contract ContextUpgradeable is Initializable {
         return msg.data;
     }
 
+    function _contextSuffixLength() internal view virtual returns (uint256) {
+        return 0;
+    }
+
     /**
      * @dev This empty reserved space is put in place to allow future versions to add new
      * variables without shifting down storage in the inheritance chain.
@@ -545,11 +554,12 @@ abstract contract ContextUpgradeable is Initializable {
 }
 
 
-// File @openzeppelin/contracts-upgradeable/utils/introspection/IERC165Upgradeable.sol@v4.9.2
+// File @openzeppelin/contracts-upgradeable/utils/introspection/IERC165Upgradeable.sol@v4.9.6
 
+// Original license: SPDX_License_Identifier: MIT
 // OpenZeppelin Contracts v4.4.1 (utils/introspection/IERC165.sol)
 
-pragma solidity ^0.8.0;
+
 
 /**
  * @dev Interface of the ERC165 standard, as defined in the
@@ -573,11 +583,12 @@ interface IERC165Upgradeable {
 }
 
 
-// File @openzeppelin/contracts-upgradeable/utils/introspection/ERC165Upgradeable.sol@v4.9.2
+// File @openzeppelin/contracts-upgradeable/utils/introspection/ERC165Upgradeable.sol@v4.9.6
 
+// Original license: SPDX_License_Identifier: MIT
 // OpenZeppelin Contracts v4.4.1 (utils/introspection/ERC165.sol)
 
-pragma solidity ^0.8.0;
+
 
 
 /**
@@ -616,11 +627,12 @@ abstract contract ERC165Upgradeable is Initializable, IERC165Upgradeable {
 }
 
 
-// File @openzeppelin/contracts-upgradeable/utils/math/MathUpgradeable.sol@v4.9.2
+// File @openzeppelin/contracts-upgradeable/utils/math/MathUpgradeable.sol@v4.9.6
 
+// Original license: SPDX_License_Identifier: MIT
 // OpenZeppelin Contracts (last updated v4.9.0) (utils/math/Math.sol)
 
-pragma solidity ^0.8.0;
+
 
 /**
  * @dev Standard math utilities missing in the Solidity language.
@@ -958,11 +970,12 @@ library MathUpgradeable {
 }
 
 
-// File @openzeppelin/contracts-upgradeable/utils/math/SignedMathUpgradeable.sol@v4.9.2
+// File @openzeppelin/contracts-upgradeable/utils/math/SignedMathUpgradeable.sol@v4.9.6
 
+// Original license: SPDX_License_Identifier: MIT
 // OpenZeppelin Contracts (last updated v4.8.0) (utils/math/SignedMath.sol)
 
-pragma solidity ^0.8.0;
+
 
 /**
  * @dev Standard signed math utilities missing in the Solidity language.
@@ -1004,11 +1017,12 @@ library SignedMathUpgradeable {
 }
 
 
-// File @openzeppelin/contracts-upgradeable/utils/StringsUpgradeable.sol@v4.9.2
+// File @openzeppelin/contracts-upgradeable/utils/StringsUpgradeable.sol@v4.9.6
 
+// Original license: SPDX_License_Identifier: MIT
 // OpenZeppelin Contracts (last updated v4.9.0) (utils/Strings.sol)
 
-pragma solidity ^0.8.0;
+
 
 
 /**
@@ -1090,11 +1104,12 @@ library StringsUpgradeable {
 }
 
 
-// File @openzeppelin/contracts-upgradeable/access/AccessControlUpgradeable.sol@v4.9.2
+// File @openzeppelin/contracts-upgradeable/access/AccessControlUpgradeable.sol@v4.9.6
 
+// Original license: SPDX_License_Identifier: MIT
 // OpenZeppelin Contracts (last updated v4.9.0) (access/AccessControl.sol)
 
-pragma solidity ^0.8.0;
+
 
 
 
@@ -1140,11 +1155,6 @@ pragma solidity ^0.8.0;
  * to enforce additional security measures for this role.
  */
 abstract contract AccessControlUpgradeable is Initializable, ContextUpgradeable, IAccessControlUpgradeable, ERC165Upgradeable {
-    function __AccessControl_init() internal onlyInitializing {
-    }
-
-    function __AccessControl_init_unchained() internal onlyInitializing {
-    }
     struct RoleData {
         mapping(address => bool) members;
         bytes32 adminRole;
@@ -1169,6 +1179,11 @@ abstract contract AccessControlUpgradeable is Initializable, ContextUpgradeable,
         _;
     }
 
+    function __AccessControl_init() internal onlyInitializing {
+    }
+
+    function __AccessControl_init_unchained() internal onlyInitializing {
+    }
     /**
      * @dev See {IERC165-supportsInterface}.
      */
@@ -1352,11 +1367,12 @@ abstract contract AccessControlUpgradeable is Initializable, ContextUpgradeable,
 }
 
 
-// File @openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol@v4.9.2
+// File @openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol@v4.9.6
 
+// Original license: SPDX_License_Identifier: MIT
 // OpenZeppelin Contracts (last updated v4.9.0) (access/Ownable.sol)
 
-pragma solidity ^0.8.0;
+
 
 
 /**
@@ -1448,18 +1464,20 @@ abstract contract OwnableUpgradeable is Initializable, ContextUpgradeable {
 }
 
 
-// File @openzeppelin/contracts-upgradeable/interfaces/IERC165Upgradeable.sol@v4.9.2
+// File @openzeppelin/contracts-upgradeable/interfaces/IERC165Upgradeable.sol@v4.9.6
 
+// Original license: SPDX_License_Identifier: MIT
 // OpenZeppelin Contracts v4.4.1 (interfaces/IERC165.sol)
 
-pragma solidity ^0.8.0;
 
 
-// File @openzeppelin/contracts-upgradeable/token/ERC721/IERC721Upgradeable.sol@v4.9.2
 
+// File @openzeppelin/contracts-upgradeable/token/ERC721/IERC721Upgradeable.sol@v4.9.6
+
+// Original license: SPDX_License_Identifier: MIT
 // OpenZeppelin Contracts (last updated v4.9.0) (token/ERC721/IERC721.sol)
 
-pragma solidity ^0.8.0;
+
 
 /**
  * @dev Required interface of an ERC721 compliant contract.
@@ -1588,18 +1606,20 @@ interface IERC721Upgradeable is IERC165Upgradeable {
 }
 
 
-// File @openzeppelin/contracts-upgradeable/interfaces/IERC721Upgradeable.sol@v4.9.2
+// File @openzeppelin/contracts-upgradeable/interfaces/IERC721Upgradeable.sol@v4.9.6
 
+// Original license: SPDX_License_Identifier: MIT
 // OpenZeppelin Contracts v4.4.1 (interfaces/IERC721.sol)
 
-pragma solidity ^0.8.0;
 
 
-// File @openzeppelin/contracts-upgradeable/interfaces/IERC4906Upgradeable.sol@v4.9.2
 
+// File @openzeppelin/contracts-upgradeable/interfaces/IERC4906Upgradeable.sol@v4.9.6
+
+// Original license: SPDX_License_Identifier: MIT
 // OpenZeppelin Contracts (last updated v4.9.0) (interfaces/IERC4906.sol)
 
-pragma solidity ^0.8.0;
+
 
 
 /// @title EIP-721 Metadata Update Extension
@@ -1616,113 +1636,383 @@ interface IERC4906Upgradeable is IERC165Upgradeable, IERC721Upgradeable {
 }
 
 
-// File @openzeppelin/contracts-upgradeable/security/PausableUpgradeable.sol@v4.9.2
+// File @openzeppelin/contracts-upgradeable/interfaces/draft-IERC1822Upgradeable.sol@v4.9.6
 
-// OpenZeppelin Contracts (last updated v4.7.0) (security/Pausable.sol)
+// Original license: SPDX_License_Identifier: MIT
+// OpenZeppelin Contracts (last updated v4.5.0) (interfaces/draft-IERC1822.sol)
 
-pragma solidity ^0.8.0;
 
 
 /**
- * @dev Contract module which allows children to implement an emergency stop
- * mechanism that can be triggered by an authorized account.
- *
- * This module is used through inheritance. It will make available the
- * modifiers `whenNotPaused` and `whenPaused`, which can be applied to
- * the functions of your contract. Note that they will not be pausable by
- * simply including this module, only once the modifiers are put in place.
+ * @dev ERC1822: Universal Upgradeable Proxy Standard (UUPS) documents a method for upgradeability through a simplified
+ * proxy whose upgrades are fully controlled by the current implementation.
  */
-abstract contract PausableUpgradeable is Initializable, ContextUpgradeable {
+interface IERC1822ProxiableUpgradeable {
     /**
-     * @dev Emitted when the pause is triggered by `account`.
+     * @dev Returns the storage slot that the proxiable contract assumes is being used to store the implementation
+     * address.
+     *
+     * IMPORTANT: A proxy pointing at a proxiable contract should not be considered proxiable itself, because this risks
+     * bricking a proxy that upgrades to it, by delegating to itself until out of gas. Thus it is critical that this
+     * function revert if invoked through a proxy.
      */
-    event Paused(address account);
+    function proxiableUUID() external view returns (bytes32);
+}
+
+
+// File @openzeppelin/contracts-upgradeable/interfaces/IERC1967Upgradeable.sol@v4.9.6
+
+// Original license: SPDX_License_Identifier: MIT
+// OpenZeppelin Contracts (last updated v4.9.0) (interfaces/IERC1967.sol)
+
+
+
+/**
+ * @dev ERC-1967: Proxy Storage Slots. This interface contains the events defined in the ERC.
+ *
+ * _Available since v4.8.3._
+ */
+interface IERC1967Upgradeable {
+    /**
+     * @dev Emitted when the implementation is upgraded.
+     */
+    event Upgraded(address indexed implementation);
 
     /**
-     * @dev Emitted when the pause is lifted by `account`.
+     * @dev Emitted when the admin account has changed.
      */
-    event Unpaused(address account);
-
-    bool private _paused;
+    event AdminChanged(address previousAdmin, address newAdmin);
 
     /**
-     * @dev Initializes the contract in unpaused state.
+     * @dev Emitted when the beacon is changed.
      */
-    function __Pausable_init() internal onlyInitializing {
-        __Pausable_init_unchained();
+    event BeaconUpgraded(address indexed beacon);
+}
+
+
+// File @openzeppelin/contracts-upgradeable/proxy/beacon/IBeaconUpgradeable.sol@v4.9.6
+
+// Original license: SPDX_License_Identifier: MIT
+// OpenZeppelin Contracts v4.4.1 (proxy/beacon/IBeacon.sol)
+
+
+
+/**
+ * @dev This is the interface that {BeaconProxy} expects of its beacon.
+ */
+interface IBeaconUpgradeable {
+    /**
+     * @dev Must return an address that can be used as a delegate call target.
+     *
+     * {BeaconProxy} will check that this address is a contract.
+     */
+    function implementation() external view returns (address);
+}
+
+
+// File @openzeppelin/contracts-upgradeable/utils/StorageSlotUpgradeable.sol@v4.9.6
+
+// Original license: SPDX_License_Identifier: MIT
+// OpenZeppelin Contracts (last updated v4.9.0) (utils/StorageSlot.sol)
+// This file was procedurally generated from scripts/generate/templates/StorageSlot.js.
+
+
+
+/**
+ * @dev Library for reading and writing primitive types to specific storage slots.
+ *
+ * Storage slots are often used to avoid storage conflict when dealing with upgradeable contracts.
+ * This library helps with reading and writing to such slots without the need for inline assembly.
+ *
+ * The functions in this library return Slot structs that contain a `value` member that can be used to read or write.
+ *
+ * Example usage to set ERC1967 implementation slot:
+ * ```solidity
+ * contract ERC1967 {
+ *     bytes32 internal constant _IMPLEMENTATION_SLOT = 0x360894a13ba1a3210667c828492db98dca3e2076cc3735a920a3ca505d382bbc;
+ *
+ *     function _getImplementation() internal view returns (address) {
+ *         return StorageSlot.getAddressSlot(_IMPLEMENTATION_SLOT).value;
+ *     }
+ *
+ *     function _setImplementation(address newImplementation) internal {
+ *         require(Address.isContract(newImplementation), "ERC1967: new implementation is not a contract");
+ *         StorageSlot.getAddressSlot(_IMPLEMENTATION_SLOT).value = newImplementation;
+ *     }
+ * }
+ * ```
+ *
+ * _Available since v4.1 for `address`, `bool`, `bytes32`, `uint256`._
+ * _Available since v4.9 for `string`, `bytes`._
+ */
+library StorageSlotUpgradeable {
+    struct AddressSlot {
+        address value;
     }
 
-    function __Pausable_init_unchained() internal onlyInitializing {
-        _paused = false;
+    struct BooleanSlot {
+        bool value;
+    }
+
+    struct Bytes32Slot {
+        bytes32 value;
+    }
+
+    struct Uint256Slot {
+        uint256 value;
+    }
+
+    struct StringSlot {
+        string value;
+    }
+
+    struct BytesSlot {
+        bytes value;
     }
 
     /**
-     * @dev Modifier to make a function callable only when the contract is not paused.
-     *
-     * Requirements:
-     *
-     * - The contract must not be paused.
+     * @dev Returns an `AddressSlot` with member `value` located at `slot`.
      */
-    modifier whenNotPaused() {
-        _requireNotPaused();
-        _;
+    function getAddressSlot(bytes32 slot) internal pure returns (AddressSlot storage r) {
+        /// @solidity memory-safe-assembly
+        assembly {
+            r.slot := slot
+        }
     }
 
     /**
-     * @dev Modifier to make a function callable only when the contract is paused.
-     *
-     * Requirements:
-     *
-     * - The contract must be paused.
+     * @dev Returns an `BooleanSlot` with member `value` located at `slot`.
      */
-    modifier whenPaused() {
-        _requirePaused();
-        _;
+    function getBooleanSlot(bytes32 slot) internal pure returns (BooleanSlot storage r) {
+        /// @solidity memory-safe-assembly
+        assembly {
+            r.slot := slot
+        }
     }
 
     /**
-     * @dev Returns true if the contract is paused, and false otherwise.
+     * @dev Returns an `Bytes32Slot` with member `value` located at `slot`.
      */
-    function paused() public view virtual returns (bool) {
-        return _paused;
+    function getBytes32Slot(bytes32 slot) internal pure returns (Bytes32Slot storage r) {
+        /// @solidity memory-safe-assembly
+        assembly {
+            r.slot := slot
+        }
     }
 
     /**
-     * @dev Throws if the contract is paused.
+     * @dev Returns an `Uint256Slot` with member `value` located at `slot`.
      */
-    function _requireNotPaused() internal view virtual {
-        require(!paused(), "Pausable: paused");
+    function getUint256Slot(bytes32 slot) internal pure returns (Uint256Slot storage r) {
+        /// @solidity memory-safe-assembly
+        assembly {
+            r.slot := slot
+        }
     }
 
     /**
-     * @dev Throws if the contract is not paused.
+     * @dev Returns an `StringSlot` with member `value` located at `slot`.
      */
-    function _requirePaused() internal view virtual {
-        require(paused(), "Pausable: not paused");
+    function getStringSlot(bytes32 slot) internal pure returns (StringSlot storage r) {
+        /// @solidity memory-safe-assembly
+        assembly {
+            r.slot := slot
+        }
     }
 
     /**
-     * @dev Triggers stopped state.
-     *
-     * Requirements:
-     *
-     * - The contract must not be paused.
+     * @dev Returns an `StringSlot` representation of the string storage pointer `store`.
      */
-    function _pause() internal virtual whenNotPaused {
-        _paused = true;
-        emit Paused(_msgSender());
+    function getStringSlot(string storage store) internal pure returns (StringSlot storage r) {
+        /// @solidity memory-safe-assembly
+        assembly {
+            r.slot := store.slot
+        }
     }
 
     /**
-     * @dev Returns to normal state.
-     *
-     * Requirements:
-     *
-     * - The contract must be paused.
+     * @dev Returns an `BytesSlot` with member `value` located at `slot`.
      */
-    function _unpause() internal virtual whenPaused {
-        _paused = false;
-        emit Unpaused(_msgSender());
+    function getBytesSlot(bytes32 slot) internal pure returns (BytesSlot storage r) {
+        /// @solidity memory-safe-assembly
+        assembly {
+            r.slot := slot
+        }
+    }
+
+    /**
+     * @dev Returns an `BytesSlot` representation of the bytes storage pointer `store`.
+     */
+    function getBytesSlot(bytes storage store) internal pure returns (BytesSlot storage r) {
+        /// @solidity memory-safe-assembly
+        assembly {
+            r.slot := store.slot
+        }
+    }
+}
+
+
+// File @openzeppelin/contracts-upgradeable/proxy/ERC1967/ERC1967UpgradeUpgradeable.sol@v4.9.6
+
+// Original license: SPDX_License_Identifier: MIT
+// OpenZeppelin Contracts (last updated v4.9.0) (proxy/ERC1967/ERC1967Upgrade.sol)
+
+
+
+
+
+
+
+
+/**
+ * @dev This abstract contract provides getters and event emitting update functions for
+ * https://eips.ethereum.org/EIPS/eip-1967[EIP1967] slots.
+ *
+ * _Available since v4.1._
+ */
+abstract contract ERC1967UpgradeUpgradeable is Initializable, IERC1967Upgradeable {
+    // This is the keccak-256 hash of "eip1967.proxy.rollback" subtracted by 1
+    bytes32 private constant _ROLLBACK_SLOT = 0x4910fdfa16fed3260ed0e7147f7cc6da11a60208b5b9406d12a635614ffd9143;
+
+    /**
+     * @dev Storage slot with the address of the current implementation.
+     * This is the keccak-256 hash of "eip1967.proxy.implementation" subtracted by 1, and is
+     * validated in the constructor.
+     */
+    bytes32 internal constant _IMPLEMENTATION_SLOT = 0x360894a13ba1a3210667c828492db98dca3e2076cc3735a920a3ca505d382bbc;
+
+    function __ERC1967Upgrade_init() internal onlyInitializing {
+    }
+
+    function __ERC1967Upgrade_init_unchained() internal onlyInitializing {
+    }
+    /**
+     * @dev Returns the current implementation address.
+     */
+    function _getImplementation() internal view returns (address) {
+        return StorageSlotUpgradeable.getAddressSlot(_IMPLEMENTATION_SLOT).value;
+    }
+
+    /**
+     * @dev Stores a new address in the EIP1967 implementation slot.
+     */
+    function _setImplementation(address newImplementation) private {
+        require(AddressUpgradeable.isContract(newImplementation), "ERC1967: new implementation is not a contract");
+        StorageSlotUpgradeable.getAddressSlot(_IMPLEMENTATION_SLOT).value = newImplementation;
+    }
+
+    /**
+     * @dev Perform implementation upgrade
+     *
+     * Emits an {Upgraded} event.
+     */
+    function _upgradeTo(address newImplementation) internal {
+        _setImplementation(newImplementation);
+        emit Upgraded(newImplementation);
+    }
+
+    /**
+     * @dev Perform implementation upgrade with additional setup call.
+     *
+     * Emits an {Upgraded} event.
+     */
+    function _upgradeToAndCall(address newImplementation, bytes memory data, bool forceCall) internal {
+        _upgradeTo(newImplementation);
+        if (data.length > 0 || forceCall) {
+            AddressUpgradeable.functionDelegateCall(newImplementation, data);
+        }
+    }
+
+    /**
+     * @dev Perform implementation upgrade with security checks for UUPS proxies, and additional setup call.
+     *
+     * Emits an {Upgraded} event.
+     */
+    function _upgradeToAndCallUUPS(address newImplementation, bytes memory data, bool forceCall) internal {
+        // Upgrades from old implementations will perform a rollback test. This test requires the new
+        // implementation to upgrade back to the old, non-ERC1822 compliant, implementation. Removing
+        // this special case will break upgrade paths from old UUPS implementation to new ones.
+        if (StorageSlotUpgradeable.getBooleanSlot(_ROLLBACK_SLOT).value) {
+            _setImplementation(newImplementation);
+        } else {
+            try IERC1822ProxiableUpgradeable(newImplementation).proxiableUUID() returns (bytes32 slot) {
+                require(slot == _IMPLEMENTATION_SLOT, "ERC1967Upgrade: unsupported proxiableUUID");
+            } catch {
+                revert("ERC1967Upgrade: new implementation is not UUPS");
+            }
+            _upgradeToAndCall(newImplementation, data, forceCall);
+        }
+    }
+
+    /**
+     * @dev Storage slot with the admin of the contract.
+     * This is the keccak-256 hash of "eip1967.proxy.admin" subtracted by 1, and is
+     * validated in the constructor.
+     */
+    bytes32 internal constant _ADMIN_SLOT = 0xb53127684a568b3173ae13b9f8a6016e243e63b6e8ee1178d6a717850b5d6103;
+
+    /**
+     * @dev Returns the current admin.
+     */
+    function _getAdmin() internal view returns (address) {
+        return StorageSlotUpgradeable.getAddressSlot(_ADMIN_SLOT).value;
+    }
+
+    /**
+     * @dev Stores a new address in the EIP1967 admin slot.
+     */
+    function _setAdmin(address newAdmin) private {
+        require(newAdmin != address(0), "ERC1967: new admin is the zero address");
+        StorageSlotUpgradeable.getAddressSlot(_ADMIN_SLOT).value = newAdmin;
+    }
+
+    /**
+     * @dev Changes the admin of the proxy.
+     *
+     * Emits an {AdminChanged} event.
+     */
+    function _changeAdmin(address newAdmin) internal {
+        emit AdminChanged(_getAdmin(), newAdmin);
+        _setAdmin(newAdmin);
+    }
+
+    /**
+     * @dev The storage slot of the UpgradeableBeacon contract which defines the implementation for this proxy.
+     * This is bytes32(uint256(keccak256('eip1967.proxy.beacon')) - 1)) and is validated in the constructor.
+     */
+    bytes32 internal constant _BEACON_SLOT = 0xa3f0ad74e5423aebfd80d3ef4346578335a9a72aeaee59ff6cb3582b35133d50;
+
+    /**
+     * @dev Returns the current beacon.
+     */
+    function _getBeacon() internal view returns (address) {
+        return StorageSlotUpgradeable.getAddressSlot(_BEACON_SLOT).value;
+    }
+
+    /**
+     * @dev Stores a new beacon in the EIP1967 beacon slot.
+     */
+    function _setBeacon(address newBeacon) private {
+        require(AddressUpgradeable.isContract(newBeacon), "ERC1967: new beacon is not a contract");
+        require(
+            AddressUpgradeable.isContract(IBeaconUpgradeable(newBeacon).implementation()),
+            "ERC1967: beacon implementation is not a contract"
+        );
+        StorageSlotUpgradeable.getAddressSlot(_BEACON_SLOT).value = newBeacon;
+    }
+
+    /**
+     * @dev Perform beacon upgrade with additional setup call. Note: This upgrades the address of the beacon, it does
+     * not upgrade the implementation contained in the beacon (see {UpgradeableBeacon-_setImplementation} for that).
+     *
+     * Emits a {BeaconUpgraded} event.
+     */
+    function _upgradeBeaconToAndCall(address newBeacon, bytes memory data, bool forceCall) internal {
+        _setBeacon(newBeacon);
+        emit BeaconUpgraded(newBeacon);
+        if (data.length > 0 || forceCall) {
+            AddressUpgradeable.functionDelegateCall(IBeaconUpgradeable(newBeacon).implementation(), data);
+        }
     }
 
     /**
@@ -1730,106 +2020,130 @@ abstract contract PausableUpgradeable is Initializable, ContextUpgradeable {
      * variables without shifting down storage in the inheritance chain.
      * See https://docs.openzeppelin.com/contracts/4.x/upgradeable#storage_gaps
      */
-    uint256[49] private __gap;
+    uint256[50] private __gap;
 }
 
 
-// File @openzeppelin/contracts-upgradeable/security/ReentrancyGuardUpgradeable.sol@v4.9.2
+// File @openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol@v4.9.6
 
-// OpenZeppelin Contracts (last updated v4.9.0) (security/ReentrancyGuard.sol)
+// Original license: SPDX_License_Identifier: MIT
+// OpenZeppelin Contracts (last updated v4.9.0) (proxy/utils/UUPSUpgradeable.sol)
 
-pragma solidity ^0.8.0;
+
+
+
 
 /**
- * @dev Contract module that helps prevent reentrant calls to a function.
+ * @dev An upgradeability mechanism designed for UUPS proxies. The functions included here can perform an upgrade of an
+ * {ERC1967Proxy}, when this contract is set as the implementation behind such a proxy.
  *
- * Inheriting from `ReentrancyGuard` will make the {nonReentrant} modifier
- * available, which can be applied to functions to make sure there are no nested
- * (reentrant) calls to them.
+ * A security mechanism ensures that an upgrade does not turn off upgradeability accidentally, although this risk is
+ * reinstated if the upgrade retains upgradeability but removes the security mechanism, e.g. by replacing
+ * `UUPSUpgradeable` with a custom implementation of upgrades.
  *
- * Note that because there is a single `nonReentrant` guard, functions marked as
- * `nonReentrant` may not call one another. This can be worked around by making
- * those functions `private`, and then adding `external` `nonReentrant` entry
- * points to them.
+ * The {_authorizeUpgrade} function must be overridden to include access restriction to the upgrade mechanism.
  *
- * TIP: If you would like to learn more about reentrancy and alternative ways
- * to protect against it, check out our blog post
- * https://blog.openzeppelin.com/reentrancy-after-istanbul/[Reentrancy After Istanbul].
+ * _Available since v4.1._
  */
-abstract contract ReentrancyGuardUpgradeable is Initializable {
-    // Booleans are more expensive than uint256 or any type that takes up a full
-    // word because each write operation emits an extra SLOAD to first read the
-    // slot's contents, replace the bits taken up by the boolean, and then write
-    // back. This is the compiler's defense against contract upgrades and
-    // pointer aliasing, and it cannot be disabled.
-
-    // The values being non-zero value makes deployment a bit more expensive,
-    // but in exchange the refund on every call to nonReentrant will be lower in
-    // amount. Since refunds are capped to a percentage of the total
-    // transaction's gas, it is best to keep them low in cases like this one, to
-    // increase the likelihood of the full refund coming into effect.
-    uint256 private constant _NOT_ENTERED = 1;
-    uint256 private constant _ENTERED = 2;
-
-    uint256 private _status;
-
-    function __ReentrancyGuard_init() internal onlyInitializing {
-        __ReentrancyGuard_init_unchained();
-    }
-
-    function __ReentrancyGuard_init_unchained() internal onlyInitializing {
-        _status = _NOT_ENTERED;
-    }
+abstract contract UUPSUpgradeable is Initializable, IERC1822ProxiableUpgradeable, ERC1967UpgradeUpgradeable {
+    /// @custom:oz-upgrades-unsafe-allow state-variable-immutable state-variable-assignment
+    address private immutable __self = address(this);
 
     /**
-     * @dev Prevents a contract from calling itself, directly or indirectly.
-     * Calling a `nonReentrant` function from another `nonReentrant`
-     * function is not supported. It is possible to prevent this from happening
-     * by making the `nonReentrant` function external, and making it call a
-     * `private` function that does the actual work.
+     * @dev Check that the execution is being performed through a delegatecall call and that the execution context is
+     * a proxy contract with an implementation (as defined in ERC1967) pointing to self. This should only be the case
+     * for UUPS and transparent proxies that are using the current contract as their implementation. Execution of a
+     * function through ERC1167 minimal proxies (clones) would not normally pass this test, but is not guaranteed to
+     * fail.
      */
-    modifier nonReentrant() {
-        _nonReentrantBefore();
+    modifier onlyProxy() {
+        require(address(this) != __self, "Function must be called through delegatecall");
+        require(_getImplementation() == __self, "Function must be called through active proxy");
         _;
-        _nonReentrantAfter();
-    }
-
-    function _nonReentrantBefore() private {
-        // On the first call to nonReentrant, _status will be _NOT_ENTERED
-        require(_status != _ENTERED, "ReentrancyGuard: reentrant call");
-
-        // Any calls to nonReentrant after this point will fail
-        _status = _ENTERED;
-    }
-
-    function _nonReentrantAfter() private {
-        // By storing the original value once again, a refund is triggered (see
-        // https://eips.ethereum.org/EIPS/eip-2200)
-        _status = _NOT_ENTERED;
     }
 
     /**
-     * @dev Returns true if the reentrancy guard is currently set to "entered", which indicates there is a
-     * `nonReentrant` function in the call stack.
+     * @dev Check that the execution is not being performed through a delegate call. This allows a function to be
+     * callable on the implementing contract but not through proxies.
      */
-    function _reentrancyGuardEntered() internal view returns (bool) {
-        return _status == _ENTERED;
+    modifier notDelegated() {
+        require(address(this) == __self, "UUPSUpgradeable: must not be called through delegatecall");
+        _;
     }
+
+    function __UUPSUpgradeable_init() internal onlyInitializing {
+    }
+
+    function __UUPSUpgradeable_init_unchained() internal onlyInitializing {
+    }
+    /**
+     * @dev Implementation of the ERC1822 {proxiableUUID} function. This returns the storage slot used by the
+     * implementation. It is used to validate the implementation's compatibility when performing an upgrade.
+     *
+     * IMPORTANT: A proxy pointing at a proxiable contract should not be considered proxiable itself, because this risks
+     * bricking a proxy that upgrades to it, by delegating to itself until out of gas. Thus it is critical that this
+     * function revert if invoked through a proxy. This is guaranteed by the `notDelegated` modifier.
+     */
+    function proxiableUUID() external view virtual override notDelegated returns (bytes32) {
+        return _IMPLEMENTATION_SLOT;
+    }
+
+    /**
+     * @dev Upgrade the implementation of the proxy to `newImplementation`.
+     *
+     * Calls {_authorizeUpgrade}.
+     *
+     * Emits an {Upgraded} event.
+     *
+     * @custom:oz-upgrades-unsafe-allow-reachable delegatecall
+     */
+    function upgradeTo(address newImplementation) public virtual onlyProxy {
+        _authorizeUpgrade(newImplementation);
+        _upgradeToAndCallUUPS(newImplementation, new bytes(0), false);
+    }
+
+    /**
+     * @dev Upgrade the implementation of the proxy to `newImplementation`, and subsequently execute the function call
+     * encoded in `data`.
+     *
+     * Calls {_authorizeUpgrade}.
+     *
+     * Emits an {Upgraded} event.
+     *
+     * @custom:oz-upgrades-unsafe-allow-reachable delegatecall
+     */
+    function upgradeToAndCall(address newImplementation, bytes memory data) public payable virtual onlyProxy {
+        _authorizeUpgrade(newImplementation);
+        _upgradeToAndCallUUPS(newImplementation, data, true);
+    }
+
+    /**
+     * @dev Function that should revert when `msg.sender` is not authorized to upgrade the contract. Called by
+     * {upgradeTo} and {upgradeToAndCall}.
+     *
+     * Normally, this function will use an xref:access.adoc[access control] modifier such as {Ownable-onlyOwner}.
+     *
+     * ```solidity
+     * function _authorizeUpgrade(address) internal override onlyOwner {}
+     * ```
+     */
+    function _authorizeUpgrade(address newImplementation) internal virtual;
 
     /**
      * @dev This empty reserved space is put in place to allow future versions to add new
      * variables without shifting down storage in the inheritance chain.
      * See https://docs.openzeppelin.com/contracts/4.x/upgradeable#storage_gaps
      */
-    uint256[49] private __gap;
+    uint256[50] private __gap;
 }
 
 
-// File @openzeppelin/contracts-upgradeable/token/ERC721/extensions/IERC721MetadataUpgradeable.sol@v4.9.2
+// File @openzeppelin/contracts-upgradeable/token/ERC721/extensions/IERC721MetadataUpgradeable.sol@v4.9.6
 
+// Original license: SPDX_License_Identifier: MIT
 // OpenZeppelin Contracts v4.4.1 (token/ERC721/extensions/IERC721Metadata.sol)
 
-pragma solidity ^0.8.0;
+
 
 /**
  * @title ERC-721 Non-Fungible Token Standard, optional metadata extension
@@ -1853,11 +2167,12 @@ interface IERC721MetadataUpgradeable is IERC721Upgradeable {
 }
 
 
-// File @openzeppelin/contracts-upgradeable/token/ERC721/IERC721ReceiverUpgradeable.sol@v4.9.2
+// File @openzeppelin/contracts-upgradeable/token/ERC721/IERC721ReceiverUpgradeable.sol@v4.9.6
 
+// Original license: SPDX_License_Identifier: MIT
 // OpenZeppelin Contracts (last updated v4.6.0) (token/ERC721/IERC721Receiver.sol)
 
-pragma solidity ^0.8.0;
+
 
 /**
  * @title ERC721 token receiver interface
@@ -1883,11 +2198,12 @@ interface IERC721ReceiverUpgradeable {
 }
 
 
-// File @openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol@v4.9.2
+// File @openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol@v4.9.6
 
+// Original license: SPDX_License_Identifier: MIT
 // OpenZeppelin Contracts (last updated v4.9.0) (token/ERC721/ERC721.sol)
 
-pragma solidity ^0.8.0;
+
 
 
 
@@ -2362,269 +2678,12 @@ contract ERC721Upgradeable is Initializable, ContextUpgradeable, ERC165Upgradeab
 }
 
 
-// File @openzeppelin/contracts-upgradeable/token/ERC721/extensions/IERC721EnumerableUpgradeable.sol@v4.9.2
+// File @openzeppelin/contracts-upgradeable/token/ERC721/extensions/ERC721URIStorageUpgradeable.sol@v4.9.6
 
-// OpenZeppelin Contracts (last updated v4.5.0) (token/ERC721/extensions/IERC721Enumerable.sol)
-
-pragma solidity ^0.8.0;
-
-/**
- * @title ERC-721 Non-Fungible Token Standard, optional enumeration extension
- * @dev See https://eips.ethereum.org/EIPS/eip-721
- */
-interface IERC721EnumerableUpgradeable is IERC721Upgradeable {
-    /**
-     * @dev Returns the total amount of tokens stored by the contract.
-     */
-    function totalSupply() external view returns (uint256);
-
-    /**
-     * @dev Returns a token ID owned by `owner` at a given `index` of its token list.
-     * Use along with {balanceOf} to enumerate all of ``owner``'s tokens.
-     */
-    function tokenOfOwnerByIndex(address owner, uint256 index) external view returns (uint256);
-
-    /**
-     * @dev Returns a token ID at a given `index` of all the tokens stored by the contract.
-     * Use along with {totalSupply} to enumerate all tokens.
-     */
-    function tokenByIndex(uint256 index) external view returns (uint256);
-}
-
-
-// File @openzeppelin/contracts-upgradeable/token/ERC721/extensions/ERC721EnumerableUpgradeable.sol@v4.9.2
-
-// OpenZeppelin Contracts (last updated v4.8.0) (token/ERC721/extensions/ERC721Enumerable.sol)
-
-pragma solidity ^0.8.0;
-
-
-
-/**
- * @dev This implements an optional extension of {ERC721} defined in the EIP that adds
- * enumerability of all the token ids in the contract as well as all token ids owned by each
- * account.
- */
-abstract contract ERC721EnumerableUpgradeable is Initializable, ERC721Upgradeable, IERC721EnumerableUpgradeable {
-    function __ERC721Enumerable_init() internal onlyInitializing {
-    }
-
-    function __ERC721Enumerable_init_unchained() internal onlyInitializing {
-    }
-    // Mapping from owner to list of owned token IDs
-    mapping(address => mapping(uint256 => uint256)) private _ownedTokens;
-
-    // Mapping from token ID to index of the owner tokens list
-    mapping(uint256 => uint256) private _ownedTokensIndex;
-
-    // Array with all token ids, used for enumeration
-    uint256[] private _allTokens;
-
-    // Mapping from token id to position in the allTokens array
-    mapping(uint256 => uint256) private _allTokensIndex;
-
-    /**
-     * @dev See {IERC165-supportsInterface}.
-     */
-    function supportsInterface(bytes4 interfaceId) public view virtual override(IERC165Upgradeable, ERC721Upgradeable) returns (bool) {
-        return interfaceId == type(IERC721EnumerableUpgradeable).interfaceId || super.supportsInterface(interfaceId);
-    }
-
-    /**
-     * @dev See {IERC721Enumerable-tokenOfOwnerByIndex}.
-     */
-    function tokenOfOwnerByIndex(address owner, uint256 index) public view virtual override returns (uint256) {
-        require(index < ERC721Upgradeable.balanceOf(owner), "ERC721Enumerable: owner index out of bounds");
-        return _ownedTokens[owner][index];
-    }
-
-    /**
-     * @dev See {IERC721Enumerable-totalSupply}.
-     */
-    function totalSupply() public view virtual override returns (uint256) {
-        return _allTokens.length;
-    }
-
-    /**
-     * @dev See {IERC721Enumerable-tokenByIndex}.
-     */
-    function tokenByIndex(uint256 index) public view virtual override returns (uint256) {
-        require(index < ERC721EnumerableUpgradeable.totalSupply(), "ERC721Enumerable: global index out of bounds");
-        return _allTokens[index];
-    }
-
-    /**
-     * @dev See {ERC721-_beforeTokenTransfer}.
-     */
-    function _beforeTokenTransfer(
-        address from,
-        address to,
-        uint256 firstTokenId,
-        uint256 batchSize
-    ) internal virtual override {
-        super._beforeTokenTransfer(from, to, firstTokenId, batchSize);
-
-        if (batchSize > 1) {
-            // Will only trigger during construction. Batch transferring (minting) is not available afterwards.
-            revert("ERC721Enumerable: consecutive transfers not supported");
-        }
-
-        uint256 tokenId = firstTokenId;
-
-        if (from == address(0)) {
-            _addTokenToAllTokensEnumeration(tokenId);
-        } else if (from != to) {
-            _removeTokenFromOwnerEnumeration(from, tokenId);
-        }
-        if (to == address(0)) {
-            _removeTokenFromAllTokensEnumeration(tokenId);
-        } else if (to != from) {
-            _addTokenToOwnerEnumeration(to, tokenId);
-        }
-    }
-
-    /**
-     * @dev Private function to add a token to this extension's ownership-tracking data structures.
-     * @param to address representing the new owner of the given token ID
-     * @param tokenId uint256 ID of the token to be added to the tokens list of the given address
-     */
-    function _addTokenToOwnerEnumeration(address to, uint256 tokenId) private {
-        uint256 length = ERC721Upgradeable.balanceOf(to);
-        _ownedTokens[to][length] = tokenId;
-        _ownedTokensIndex[tokenId] = length;
-    }
-
-    /**
-     * @dev Private function to add a token to this extension's token tracking data structures.
-     * @param tokenId uint256 ID of the token to be added to the tokens list
-     */
-    function _addTokenToAllTokensEnumeration(uint256 tokenId) private {
-        _allTokensIndex[tokenId] = _allTokens.length;
-        _allTokens.push(tokenId);
-    }
-
-    /**
-     * @dev Private function to remove a token from this extension's ownership-tracking data structures. Note that
-     * while the token is not assigned a new owner, the `_ownedTokensIndex` mapping is _not_ updated: this allows for
-     * gas optimizations e.g. when performing a transfer operation (avoiding double writes).
-     * This has O(1) time complexity, but alters the order of the _ownedTokens array.
-     * @param from address representing the previous owner of the given token ID
-     * @param tokenId uint256 ID of the token to be removed from the tokens list of the given address
-     */
-    function _removeTokenFromOwnerEnumeration(address from, uint256 tokenId) private {
-        // To prevent a gap in from's tokens array, we store the last token in the index of the token to delete, and
-        // then delete the last slot (swap and pop).
-
-        uint256 lastTokenIndex = ERC721Upgradeable.balanceOf(from) - 1;
-        uint256 tokenIndex = _ownedTokensIndex[tokenId];
-
-        // When the token to delete is the last token, the swap operation is unnecessary
-        if (tokenIndex != lastTokenIndex) {
-            uint256 lastTokenId = _ownedTokens[from][lastTokenIndex];
-
-            _ownedTokens[from][tokenIndex] = lastTokenId; // Move the last token to the slot of the to-delete token
-            _ownedTokensIndex[lastTokenId] = tokenIndex; // Update the moved token's index
-        }
-
-        // This also deletes the contents at the last position of the array
-        delete _ownedTokensIndex[tokenId];
-        delete _ownedTokens[from][lastTokenIndex];
-    }
-
-    /**
-     * @dev Private function to remove a token from this extension's token tracking data structures.
-     * This has O(1) time complexity, but alters the order of the _allTokens array.
-     * @param tokenId uint256 ID of the token to be removed from the tokens list
-     */
-    function _removeTokenFromAllTokensEnumeration(uint256 tokenId) private {
-        // To prevent a gap in the tokens array, we store the last token in the index of the token to delete, and
-        // then delete the last slot (swap and pop).
-
-        uint256 lastTokenIndex = _allTokens.length - 1;
-        uint256 tokenIndex = _allTokensIndex[tokenId];
-
-        // When the token to delete is the last token, the swap operation is unnecessary. However, since this occurs so
-        // rarely (when the last minted token is burnt) that we still do the swap here to avoid the gas cost of adding
-        // an 'if' statement (like in _removeTokenFromOwnerEnumeration)
-        uint256 lastTokenId = _allTokens[lastTokenIndex];
-
-        _allTokens[tokenIndex] = lastTokenId; // Move the last token to the slot of the to-delete token
-        _allTokensIndex[lastTokenId] = tokenIndex; // Update the moved token's index
-
-        // This also deletes the contents at the last position of the array
-        delete _allTokensIndex[tokenId];
-        _allTokens.pop();
-    }
-
-    /**
-     * @dev This empty reserved space is put in place to allow future versions to add new
-     * variables without shifting down storage in the inheritance chain.
-     * See https://docs.openzeppelin.com/contracts/4.x/upgradeable#storage_gaps
-     */
-    uint256[46] private __gap;
-}
-
-
-// File @openzeppelin/contracts-upgradeable/token/ERC721/extensions/ERC721PausableUpgradeable.sol@v4.9.2
-
-// OpenZeppelin Contracts (last updated v4.8.2) (token/ERC721/extensions/ERC721Pausable.sol)
-
-pragma solidity ^0.8.0;
-
-
-
-/**
- * @dev ERC721 token with pausable token transfers, minting and burning.
- *
- * Useful for scenarios such as preventing trades until the end of an evaluation
- * period, or having an emergency switch for freezing all token transfers in the
- * event of a large bug.
- *
- * IMPORTANT: This contract does not include public pause and unpause functions. In
- * addition to inheriting this contract, you must define both functions, invoking the
- * {Pausable-_pause} and {Pausable-_unpause} internal functions, with appropriate
- * access control, e.g. using {AccessControl} or {Ownable}. Not doing so will
- * make the contract unpausable.
- */
-abstract contract ERC721PausableUpgradeable is Initializable, ERC721Upgradeable, PausableUpgradeable {
-    function __ERC721Pausable_init() internal onlyInitializing {
-        __Pausable_init_unchained();
-    }
-
-    function __ERC721Pausable_init_unchained() internal onlyInitializing {
-    }
-    /**
-     * @dev See {ERC721-_beforeTokenTransfer}.
-     *
-     * Requirements:
-     *
-     * - the contract must not be paused.
-     */
-    function _beforeTokenTransfer(
-        address from,
-        address to,
-        uint256 firstTokenId,
-        uint256 batchSize
-    ) internal virtual override {
-        super._beforeTokenTransfer(from, to, firstTokenId, batchSize);
-
-        require(!paused(), "ERC721Pausable: token transfer while paused");
-    }
-
-    /**
-     * @dev This empty reserved space is put in place to allow future versions to add new
-     * variables without shifting down storage in the inheritance chain.
-     * See https://docs.openzeppelin.com/contracts/4.x/upgradeable#storage_gaps
-     */
-    uint256[50] private __gap;
-}
-
-
-// File @openzeppelin/contracts-upgradeable/token/ERC721/extensions/ERC721URIStorageUpgradeable.sol@v4.9.2
-
+// Original license: SPDX_License_Identifier: MIT
 // OpenZeppelin Contracts (last updated v4.9.0) (token/ERC721/extensions/ERC721URIStorage.sol)
 
-pragma solidity ^0.8.0;
+
 
 
 
@@ -2632,16 +2691,16 @@ pragma solidity ^0.8.0;
  * @dev ERC721 token with storage based token URI management.
  */
 abstract contract ERC721URIStorageUpgradeable is Initializable, IERC4906Upgradeable, ERC721Upgradeable {
-    function __ERC721URIStorage_init() internal onlyInitializing {
-    }
-
-    function __ERC721URIStorage_init_unchained() internal onlyInitializing {
-    }
     using StringsUpgradeable for uint256;
 
     // Optional mapping for token URIs
     mapping(uint256 => string) private _tokenURIs;
 
+    function __ERC721URIStorage_init() internal onlyInitializing {
+    }
+
+    function __ERC721URIStorage_init_unchained() internal onlyInitializing {
+    }
     /**
      * @dev See {IERC165-supportsInterface}
      */
@@ -2708,344 +2767,148 @@ abstract contract ERC721URIStorageUpgradeable is Initializable, IERC4906Upgradea
 }
 
 
-// File @openzeppelin/contracts-upgradeable/utils/CountersUpgradeable.sol@v4.9.2
+// File contracts/IAstarCampaignNFT.sol
 
-// OpenZeppelin Contracts v4.4.1 (utils/Counters.sol)
+// Original license: SPDX_License_Identifier: MPL-2.0
 
-pragma solidity ^0.8.0;
 
-/**
- * @title Counters
- * @author Matt Condon (@shrugs)
- * @dev Provides counters that can only be incremented, decremented or reset. This can be used e.g. to track the number
- * of elements in a mapping, issuing ERC721 ids, or counting request ids.
- *
- * Include with `using Counters for Counters.Counter;`
- */
-library CountersUpgradeable {
-    struct Counter {
-        // This variable should never be directly accessed by users of the library: interactions must be restricted to
-        // the library's function. As of Solidity v0.5.2, this cannot be enforced, though there is a proposal to add
-        // this feature: see https://github.com/ethereum/solidity/issues/4637
-        uint256 _value; // default: 0
-    }
-
-    function current(Counter storage counter) internal view returns (uint256) {
-        return counter._value;
-    }
-
-    function increment(Counter storage counter) internal {
-        unchecked {
-            counter._value += 1;
-        }
-    }
-
-    function decrement(Counter storage counter) internal {
-        uint256 value = counter._value;
-        require(value > 0, "Counter: decrement overflow");
-        unchecked {
-            counter._value = value - 1;
-        }
-    }
-
-    function reset(Counter storage counter) internal {
-        counter._value = 0;
-    }
+interface IAstarCampaignNFT {
+    function mint(address _to, uint256 amount) external payable;
 }
 
 
-// File src/WolfGenerative.sol
+// File contracts/IKamuiVerseNFT.sol
 
-pragma solidity ^0.8.18;
-
-
+// Original license: SPDX_License_Identifier: MPL-2.0
 
 
+interface IKamuiVerseNFT {
+    error InsufficientPayment();
+
+    error AmountMustBeGreaterThanZero();
+
+    error NotMintable();
+
+    function setMintPrice(uint256 _price) external;
+    function setBaseURI(string memory __baseURI) external;
+    function withdraw(address _target) external;
+}
+
+
+// File contracts/KamuiVerseNFT.sol
+
+// Original license: SPDX_License_Identifier: MPL-2.0
 
 
 
 
 
+
+
+
+// マーケットプレイスで、NFTの情報を設定するために必要らしいので、
+// OwnableとAccessControlの同時継承を行う。
+// https://hackmd.io/@maario/BJLiFsd6a
 
 contract TestMe is
-Initializable,
-ERC721Upgradeable,
-ERC721EnumerableUpgradeable,
-ERC721PausableUpgradeable,
-ERC721URIStorageUpgradeable,
-AccessControlUpgradeable,
 OwnableUpgradeable,
-ReentrancyGuardUpgradeable
+AccessControlUpgradeable,
+UUPSUpgradeable,
+ERC721URIStorageUpgradeable,
+IKamuiVerseNFT,
+IAstarCampaignNFT
 {
-    using CountersUpgradeable for CountersUpgradeable.Counter;
-    CountersUpgradeable.Counter private _tokenIdTracker;
     using StringsUpgradeable for uint256;
+    uint256 public mintPrice;
+    uint256 public tokenId;
+    string public baseURI;
+    uint256 public totalSupply;
 
-    receive() external payable {}
+    bytes32 public constant MINT_ROLE = keccak256("MINT_ROLE");
+    uint256 public constant MAX_MINT_COUNT = 1000;
 
-    error NotExists(uint256 tokenId);
-    error MaxLimitReached();
-    error SaleEnded();
-    error NoFundsToWithdraw();
-    error InsufficientETHBalance();
-    error WithdrawFailed();
-
-    event NFTCreated(uint256 indexed id);
-    event Withdrawn(address indexed receiver, uint256 amount);
-    event RevealedChanged(bool state);
-    event BaseURIChanged(string newBaseURI);
-    event BasePATHChanged(string newBasePATH);
-    event MaxElementsChanged(uint256 newMaxElements);
-
-    bytes32 public constant MINTER_ROLE =
-    keccak256("MINTER_ROLE");
-    bytes32 public constant WITHDRAW_ROLE =
-    keccak256("WITHDRAW_ROLE");
-
-    address private receiver;
-    bool public revealed;
-    uint256 private maxElements;
-    string private baseTokenURI;
-    string private basePATH;
-
-    function initialize(
-        string memory _name,
-        string memory _symbol,
-        string memory _baseUri,
-        string memory _basePath,
-        address _defaultAdmin,
-        uint256 _maxElements
-    ) public initializer {
-        __AccessControl_init();
-        __ReentrancyGuard_init();
+    function initialize() public initializer {
         __Ownable_init();
-
-        _setupRole(DEFAULT_ADMIN_ROLE, _defaultAdmin);
-        _setupRole(MINTER_ROLE, _defaultAdmin);
-        _setupRole(WITHDRAW_ROLE, _defaultAdmin);
-
-        __ERC721_init(_name, _symbol);
-        __ERC721Pausable_init();
-        __ERC721Enumerable_init();
-        setBaseURI(_baseUri);
-        setBasePATH(_basePath);
-
-        _tokenIdTracker.increment();
-
-        receiver = _defaultAdmin;
-        maxElements = _maxElements;
+        __UUPSUpgradeable_init();
+        __ERC721_init("Kamui", "KAMUI");
+        _grantRole(DEFAULT_ADMIN_ROLE, _msgSender());
+        _grantRole(MINT_ROLE, _msgSender());
+        mintPrice = 0.001 ether;
+        totalSupply = 0;
     }
 
-    function setMaxElements(
-        uint256 _maxElements
-    ) public onlyRole(DEFAULT_ADMIN_ROLE) {
-        maxElements = _maxElements;
-        emit MaxElementsChanged(_maxElements);
-    }
-
-    function _totalSupply() internal view returns (uint) {
-        return _tokenIdTracker.current();
+    function supportsInterface(
+        bytes4 _interfaceId
+    )
+    public
+    view
+    override(ERC721URIStorageUpgradeable, AccessControlUpgradeable)
+    returns (bool)
+    {
+        return
+            _interfaceId == type(IKamuiVerseNFT).interfaceId ||
+            _interfaceId == type(IAstarCampaignNFT).interfaceId ||
+            super.supportsInterface(_interfaceId);
     }
 
     function mint(
         address _to,
         uint256 _amount
-    ) public onlyRole(MINTER_ROLE) {
-        uint256 total = _totalSupply();
-        require(total <= maxElements, "Sale end");
-
-        if (total + _amount > maxElements)
-            revert MaxLimitReached();
-
+    ) external payable onlyRole(MINT_ROLE) {
+        if (_amount == 0) {
+            revert AmountMustBeGreaterThanZero();
+        }
+        if (msg.value != mintPrice * _amount) {
+            revert InsufficientPayment();
+        }
+        if (totalSupply + _amount > MAX_MINT_COUNT) {
+            revert NotMintable();
+        }
         for (uint256 i = 0; i < _amount; i++) {
-            _mintAnElement(_to, total + i);
+            uint256 assetId = getAssetId(i);
+            _safeMint(_to, tokenId);
+            _setTokenURI(
+                tokenId,
+                string(abi.encodePacked(assetId.toString(), ".json"))
+            );
+            tokenId++;
+            totalSupply++;
         }
     }
 
-    function mintTo(
-        address[] memory _toAddresses
-    ) public onlyRole(DEFAULT_ADMIN_ROLE) {
-        uint256 total = _totalSupply();
-        require(total <= maxElements, "Sale end");
-
-        uint256 count = _toAddresses.length;
-        if (total + count > maxElements)
-            revert MaxLimitReached();
-
-        for (uint256 i = 0; i < count; i++) {
-            _mintAnElement(_toAddresses[i], total + i);
-        }
+    function getAssetId(uint256 _index) private view returns (uint256) {
+        uint256 random = uint256(
+            keccak256(
+                abi.encodePacked(
+                    block.number,
+                    blockhash(block.number - 1),
+                    block.timestamp,
+                    tokenId,
+                    _index
+                )
+            )
+        );
+        return random % 10;
     }
 
-    function _mintAnElement(address _to, uint256 _id) private {
-        _tokenIdTracker.increment();
-        _safeMint(_to, _id);
-        emit NFTCreated(_id);
-    }
-
-    function pause(
-        bool _val
-    ) public onlyRole(DEFAULT_ADMIN_ROLE) {
-        if (_val == true) {
-            _pause();
-            return;
-        }
-        _unpause();
-    }
-
-    function _baseURI()
-    internal
-    view
-    virtual
-    override
-    returns (string memory)
-    {
-        return baseTokenURI;
-    }
-
-    function _basePATH()
-    internal
-    view
-    virtual
-    returns (string memory)
-    {
-        return basePATH;
+    function withdraw(address _target) external onlyRole(DEFAULT_ADMIN_ROLE) {
+        payable(_target).transfer(address(this).balance);
     }
 
     function setBaseURI(
-        string memory _newBaseURI
-    ) public onlyRole(DEFAULT_ADMIN_ROLE) {
-        if (
-            keccak256(abi.encodePacked(_newBaseURI)) !=
-            keccak256(abi.encodePacked(_baseURI()))
-        ) {
-            baseTokenURI = _newBaseURI;
-            emit BaseURIChanged(_newBaseURI);
-        }
-    }
-
-    function setBasePATH(
-        string memory _newBasePATH
-    ) public onlyRole(DEFAULT_ADMIN_ROLE) {
-        if (
-            keccak256(abi.encodePacked(_newBasePATH)) !=
-            keccak256(abi.encodePacked(_basePATH()))
-        ) {
-            basePATH = _newBasePATH;
-            emit BasePATHChanged(_newBasePATH);
-        }
-    }
-
-    function setRevealed(
-        bool _state
-    ) public onlyRole(DEFAULT_ADMIN_ROLE) {
-        revealed = _state;
-        emit RevealedChanged(_state);
-    }
-
-    function withdraw()
-    external
-    onlyRole(WITHDRAW_ROLE)
-    nonReentrant
-    {
-        uint256 balance = address(this).balance;
-        if (balance == 0) revert InsufficientETHBalance();
-
-        payable(receiver).transfer(balance);
-        emit Withdrawn(msg.sender, balance);
-    }
-
-    function _beforeTokenTransfer(
-        address from,
-        address to,
-        uint256 firstTokenId,
-        uint256 batchSize
-    )
-    internal
-    override(
-    ERC721Upgradeable,
-    ERC721EnumerableUpgradeable,
-    ERC721PausableUpgradeable
-    )
-    {
-        super._beforeTokenTransfer(
-            from,
-            to,
-            firstTokenId,
-            batchSize
-        );
-    }
-
-    function supportsInterface(
-        bytes4 interfaceId
-    )
-    public
-    view
-    virtual
-    override(
-    AccessControlUpgradeable,
-    ERC721URIStorageUpgradeable,
-    ERC721Upgradeable,
-    ERC721EnumerableUpgradeable
-    )
-    returns (bool)
-    {
-        return super.supportsInterface(interfaceId);
-    }
-
-    function tokenURI(
-        uint256 _tokenId
-    )
-    public
-    view
-    override(ERC721Upgradeable, ERC721URIStorageUpgradeable)
-    returns (string memory)
-    {
-        require(
-            _exists(_tokenId),
-            "ERC721Metadata: URI query for nonexistent token"
-        );
-
-        string memory base = _baseURI();
-        if (!revealed) {
-            return string(abi.encodePacked(base, _basePATH()));
-        } else {
-            return
-                bytes(base).length > 0
-                    ? string(
-                    abi.encodePacked(
-                        base,
-                        _tokenId.toString()
-                    )
-                )
-                    : "";
-        }
-    }
-
-    function setupRole(
-        bytes32 _role,
-        address _account
+        string memory __baseURI
     ) external onlyRole(DEFAULT_ADMIN_ROLE) {
-        if (_account != address(0)) {
-            _setupRole(_role, _account);
-        }
+        baseURI = __baseURI;
     }
-
-    function _burn(
-        uint256 tokenId
-    )
-    internal
-    override(ERC721Upgradeable, ERC721URIStorageUpgradeable)
-    {
-        super._burn(tokenId);
+    function setMintPrice(
+        uint256 _price
+    ) external onlyRole(DEFAULT_ADMIN_ROLE) {
+        mintPrice = _price;
     }
-
-    function burn(uint256 tokenId) external {
-        require(
-            ownerOf(tokenId) == msg.sender,
-            "Caller is not the token owner"
-        );
-
-        _burn(tokenId);
+    function _baseURI() internal view override returns (string memory) {
+        return baseURI;
     }
+    function _authorizeUpgrade(
+        address
+    ) internal override onlyRole(DEFAULT_ADMIN_ROLE) {}
 }

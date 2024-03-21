@@ -2,8 +2,8 @@
 pragma solidity ^0.8.20;
 import "forge-std/console.sol";
 import "forge-std/Test.sol";
-import {TestMe} from "../src/WGG/TestMe.sol";
-import {Config} from "../src/WGG/Config.sol";
+import {TestMe} from "../src/Kamui/TestMe.sol";
+import {Config} from "../src/Kamui/Config.sol";
 
 contract BaseTemplateTest is Test {
     TestMe public testMe;
@@ -18,6 +18,7 @@ contract BaseTemplateTest is Test {
             testMe = new TestMe(address(this), address(this), "NAME", "SYMBOL", 1000, 1, "ipfs://example.com/");
         */
         testMe = new TestMe();
+        testMe.initialize();
         config = new Config();
 
         vm.deal(address(this), 100 ether);
@@ -32,37 +33,31 @@ contract BaseTemplateTest is Test {
             uint256 price = config.mintPrice();
             testMe.mint{value: price}(to, amount);
         */
-        testMe.mint(to, amount);
+        uint256 price = config.mintPrice();
+        testMe.mint{value: price}(to, amount);
     }
 
-    // IMPORTANT: comment this test is mint is non payable
-//    function test_noFreeMint() public {
-//        address alice = makeAddr("alice");
-//        vm.expectRevert();
-//        testMe.mint(alice, 1);
-//    }
-
     function test_EnsureMinterRole() public {
-        testMe.grantRole(testMe.MINTER_ROLE(), address(this));
-        assertEq(testMe.hasRole(testMe.MINTER_ROLE(), address(this)), true);
+        testMe.grantRole(testMe.MINT_ROLE(), address(this));
+        assertEq(testMe.hasRole(testMe.MINT_ROLE(), address(this)), true);
     }
 
     function test_MintOne() public {
         address alice = makeAddr("alice");
-        testMe.grantRole(testMe.MINTER_ROLE(), address(this));
+        testMe.grantRole(testMe.MINT_ROLE(), address(this));
         _callMint(alice, 1);
     }
 
     function test_MintWithNonMinterRoleFails() public {
         address alice = makeAddr("alice");
         vm.deal(alice, 100 ether);
-        testMe.revokeRole(testMe.MINTER_ROLE(), address(this));
-        uint256 balanceBefore = testMe.balanceOf(alice, 0);
+        testMe.revokeRole(testMe.MINT_ROLE(), address(this));
+        uint256 balanceBefore = testMe.balanceOf(alice);
 
         uint256 price = config.mintPrice();
         vm.expectRevert();
-        testMe.mint(alice, 1);
-        assertEq(testMe.balanceOf(alice, 0), balanceBefore);
+        testMe.mint{value: price}(alice, 1);
+        assertEq(testMe.balanceOf(alice), balanceBefore);
     }
 
     function test_UserCannotMint() public {
@@ -71,7 +66,7 @@ contract BaseTemplateTest is Test {
         vm.deal(alice, 100 ether);
         vm.expectRevert();
         vm.prank(alice);
-        testMe.mint(alice, 1);
+        testMe.mint{value: price}(alice, 1);
     }
 
     function test_MaxMintPerUser() public {
@@ -79,7 +74,7 @@ contract BaseTemplateTest is Test {
             return;
         }
         address alice = makeAddr("alice");
-        vm.deal(alice, 1000 ether);
+        vm.deal(alice, 1 ether);
         for (uint256 i = 0; i < config.maxMintPerUser(); i++) {
             _callMint(alice, 1);
         }
@@ -98,11 +93,28 @@ contract BaseTemplateTest is Test {
             vm.deal(someUser, 1 ether);
             _callMint(someUser, 1);
         }
-
+        uint256 price = config.mintPrice();
         address alice = makeAddr("alice");
         vm.expectRevert();
         vm.deal(alice, 1 ether);
+        testMe.mint{value: price}(alice, 1);
+    }
+
+    function test_noFreeMint() public {
+        if (config.mintPrice() == 0) {
+            return;
+        }
+        address alice = makeAddr("alice");
+        vm.expectRevert();
+        testMe.mint{value: 0}(alice, 1);
+    }
+
+    function test_totalSupplyIsIncreasing() public {
+        address alice = makeAddr("alice");
+        testMe.grantRole(testMe.MINT_ROLE(), address(this));
+        assertEq(testMe.totalSupply(), 0);
         _callMint(alice, 1);
+        assertEq(testMe.totalSupply(), 1);
     }
 
     function test_mint5AndPrintsTokenUri() public {
@@ -112,9 +124,14 @@ contract BaseTemplateTest is Test {
             _callMint(someUser, 1);
         }
         for (uint256 i = 0; i < 5; i++) {
-            string memory tokenUri = testMe.uri(i);
+            string memory tokenUri = testMe.tokenURI(i);
             console.log("Token URI: %s", tokenUri);
         }
+    }
+
+    function test_totalSupplyIsPublic() public {
+        uint256 supply = testMe.totalSupply();
+        console.log("Total Supply: %s", supply);
     }
 
     function test_owner() public {

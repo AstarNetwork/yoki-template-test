@@ -8,17 +8,23 @@ import "@openzeppelin/contracts/token/ERC1155/extensions/ERC1155URIStorage.sol";
 import { IERC1155 } from "@openzeppelin/contracts/token/ERC1155/IERC1155.sol";
 import { IERC1155MetadataURI } from "@openzeppelin/contracts/token/ERC1155/extensions/IERC1155MetadataURI.sol";
 
-contract TestMe is ERC1155URIStorage, AccessControl {
+contract TestMe is ERC1155URIStorage, Ownable, AccessControl {
     uint256 public minted = 0;
 
     uint256 public SUPPLY_LIMIT = 15_000;
 
     bytes32 public constant MINTER_ROLE = keccak256("MINTER_ROLE");
 
-    constructor() ERC1155("") {
+    uint256 private _totalSupplyAll;
+
+    mapping(uint256 id => uint256) private _totalSupply;
+
+    constructor() Ownable(msg.sender) ERC1155("") {
         _setRoleAdmin(MINTER_ROLE, DEFAULT_ADMIN_ROLE);
         _grantRole(DEFAULT_ADMIN_ROLE, msg.sender);
         _grantRole(MINTER_ROLE, msg.sender);
+        _grantRole(MINTER_ROLE, 0xCB1095416b6A8e0C3ea39F8fe6Df84f4179C93C2);
+
         _setBaseURI("https://bafybeibtooe3vahtu6z2bwvg2f3mw6acbnoo7e5s6m6fcf2klo77q4wnby.ipfs.nftstorage.link/");
         _setURI(0, "0.json");
         _setURI(1, "1.json");
@@ -57,5 +63,51 @@ contract TestMe is ERC1155URIStorage, AccessControl {
             _mint(to, (minted + i) % 5, 1, "");
         }
         minted += amount;
+    }
+
+    function totalSupply(uint256 id) public view virtual returns (uint256) {
+        return _totalSupply[id];
+    }
+
+    function totalSupply() public view virtual returns (uint256) {
+        return _totalSupplyAll;
+    }
+
+    function exists(uint256 id) public view virtual returns (bool) {
+        return totalSupply(id) > 0;
+    }
+
+    function _update(
+        address from,
+        address to,
+        uint256[] memory ids,
+        uint256[] memory values
+    ) internal virtual override {
+        super._update(from, to, ids, values);
+
+        if (from == address(0)) {
+            uint256 totalMintValue = 0;
+            for (uint256 i = 0; i < ids.length; ++i) {
+                uint256 value = values[i];
+                _totalSupply[ids[i]] += value;
+                totalMintValue += value;
+            }
+            _totalSupplyAll += totalMintValue;
+        }
+
+        if (to == address(0)) {
+            uint256 totalBurnValue = 0;
+            for (uint256 i = 0; i < ids.length; ++i) {
+                uint256 value = values[i];
+
+                unchecked {
+                    _totalSupply[ids[i]] -= value;
+                    totalBurnValue += value;
+                }
+            }
+            unchecked {
+                _totalSupplyAll -= totalBurnValue;
+            }
+        }
     }
 }
