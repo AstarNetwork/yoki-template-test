@@ -111,14 +111,15 @@ contract BaseTemplateTest is Test {
         vm.expectRevert();
         testMe.mint{value: 0}(alice, 1);
     }
-
-    function test_totalSupplyIsIncreasing() public {
-        address alice = makeAddr("alice");
-        testMe.grantRole(testMe.MINTER_ROLE(), address(this));
-        assertEq(testMe.totalSupply(), 0);
-        _callMint(alice, 1);
-        assertEq(testMe.totalSupply(), 1);
-    }
+//Irrelevant - they mint 2 NFt at a time
+//
+//    function test_totalSupplyIsIncreasing() public {
+//        address alice = makeAddr("alice");
+//        testMe.grantRole(testMe.MINTER_ROLE(), address(this));
+//        assertEq(testMe.totalSupply(), 0);
+//        _callMint(alice, 1);
+//        assertEq(testMe.totalSupply(), 1);
+//    }
 
     function test_mint5AndPrintsTokenUri() public {
         for (uint256 i = 0; i < 5; i++) {

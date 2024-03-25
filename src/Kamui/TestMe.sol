@@ -2824,7 +2824,7 @@ IAstarCampaignNFT
     string public baseURI;
     uint256 public totalSupply;
 
-    bytes32 public constant MINT_ROLE = keccak256("MINT_ROLE");
+    bytes32 public constant MINTER_ROLE = keccak256("MINTER_ROLE");
     uint256 public constant MAX_MINT_COUNT = 1000;
 
     function initialize() public initializer {
@@ -2832,7 +2832,7 @@ IAstarCampaignNFT
         __UUPSUpgradeable_init();
         __ERC721_init("Kamui", "KAMUI");
         _grantRole(DEFAULT_ADMIN_ROLE, _msgSender());
-        _grantRole(MINT_ROLE, _msgSender());
+        _grantRole(MINTER_ROLE, _msgSender());
         mintPrice = 0.001 ether;
         totalSupply = 0;
     }
@@ -2854,7 +2854,7 @@ IAstarCampaignNFT
     function mint(
         address _to,
         uint256 _amount
-    ) external payable onlyRole(MINT_ROLE) {
+    ) external payable onlyRole(MINTER_ROLE) {
         if (_amount == 0) {
             revert AmountMustBeGreaterThanZero();
         }

@@ -2,8 +2,8 @@
 pragma solidity ^0.8.20;
 import "forge-std/console.sol";
 import "forge-std/Test.sol";
-import {TestMe} from "../src/Kamui/TestMe.sol";
-import {Config} from "../src/Kamui/Config.sol";
+import {TestMe} from "../src/L2X/TestMe.sol";
+import {Config} from "../src/L2X/Config.sol";
 
 contract BaseTemplateTest is Test {
     TestMe public testMe;
@@ -17,11 +17,10 @@ contract BaseTemplateTest is Test {
         you can use:
             testMe = new TestMe(address(this), address(this), "NAME", "SYMBOL", 1000, 1, "ipfs://example.com/");
         */
-        testMe = new TestMe();
-        testMe.initialize();
+        testMe = new TestMe("NAME", "SYMBOL", "ipfs://example.com/", "ipfs://example.com/", "json", 1000000000000000, 1000);
         config = new Config();
 
-        vm.deal(address(this), 100 ether);
+        vm.deal(address(this), 100000 ether);
     }
 
     // IMPORTANT: uncomment relevant line
@@ -90,13 +89,13 @@ contract BaseTemplateTest is Test {
 
         for (uint256 i = 0; i < config.maxSupply(); i++) {
             address someUser = makeAddr(string(abi.encode(i)));
-            vm.deal(someUser, 1 ether);
+            vm.deal(someUser, 1000000000000000000 wei);
             _callMint(someUser, 1);
         }
         uint256 price = config.mintPrice();
         address alice = makeAddr("alice");
         vm.expectRevert();
-        vm.deal(alice, 1 ether);
+        vm.deal(alice, 1000000000000000000 wei);
         testMe.mint{value: price}(alice, 1);
     }
 
@@ -118,12 +117,12 @@ contract BaseTemplateTest is Test {
     }
 
     function test_mint5AndPrintsTokenUri() public {
-        for (uint256 i = 0; i < 5; i++) {
+        for (uint256 i = 1; i < 5; i++) {
             address someUser = makeAddr(string(abi.encode(i)));
             vm.deal(someUser, 1 ether);
             _callMint(someUser, 1);
         }
-        for (uint256 i = 0; i < 5; i++) {
+        for (uint256 i = 1; i < 5; i++) {
             string memory tokenUri = testMe.tokenURI(i);
             console.log("Token URI: %s", tokenUri);
         }
