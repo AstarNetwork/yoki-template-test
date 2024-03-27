@@ -2,8 +2,8 @@
 pragma solidity ^0.8.20;
 import "forge-std/console.sol";
 import "forge-std/Test.sol";
-import {TestMe} from "../src/Skylabs - YNFT/TestMe.sol";
-import {Config} from "../src/Skylabs - YNFT/Config.sol";
+import {TestMe} from "../src/dappradar/TestMe.sol";
+import {Config} from "../src/dappradar/Config.sol";
 
 contract BaseTemplateTest is Test {
     TestMe public testMe;
@@ -17,7 +17,7 @@ contract BaseTemplateTest is Test {
         you can use:
             testMe = new TestMe(address(this), address(this), "NAME", "SYMBOL", 1000, 1, "ipfs://example.com/");
         */
-        testMe = new TestMe("NAME", "SYMBOL", "ipfs://example.com/", "ipfs://example.com/", 100000000000000000, 10000);
+        testMe = new TestMe("NAME", "SYMBOL");
         config = new Config();
 
         vm.deal(address(this), 100000 ether);
@@ -32,8 +32,7 @@ contract BaseTemplateTest is Test {
             uint256 price = config.mintPrice();
             testMe.mint{value: price}(to, amount);
         */
-        uint256 price = config.mintPrice();
-        testMe.mint{value: price}(to, amount);
+        testMe.mint(to, amount);
     }
 
     function test_EnsureMinterRole() public {
@@ -53,19 +52,17 @@ contract BaseTemplateTest is Test {
         testMe.revokeRole(testMe.MINTER_ROLE(), address(this));
         uint256 balanceBefore = testMe.balanceOf(alice);
 
-        uint256 price = config.mintPrice();
         vm.expectRevert();
-        testMe.mint{value: price}(alice, 1);
+        testMe.mint(alice, 1);
         assertEq(testMe.balanceOf(alice), balanceBefore);
     }
 
     function test_UserCannotMint() public {
         address alice = makeAddr("alice");
-        uint256 price = config.mintPrice();
         vm.deal(alice, 100 ether);
         vm.expectRevert();
         vm.prank(alice);
-        testMe.mint{value: price}(alice, 1);
+        testMe.mint(alice, 1);
     }
 
     function test_MaxMintPerUser() public {
@@ -92,11 +89,10 @@ contract BaseTemplateTest is Test {
             vm.deal(someUser, 1000000000000000000 wei);
             _callMint(someUser, 1);
         }
-        uint256 price = config.mintPrice();
         address alice = makeAddr("alice");
         vm.expectRevert();
         vm.deal(alice, 1000000000000000000 wei);
-        testMe.mint{value: price}(alice, 1);
+        testMe.mint(alice, 1);
     }
 
     function test_noFreeMint() public {
@@ -105,7 +101,7 @@ contract BaseTemplateTest is Test {
         }
         address alice = makeAddr("alice");
         vm.expectRevert();
-        testMe.mint{value: 0}(alice, 1);
+        testMe.mint(alice, 1);
     }
 
     function test_totalSupplyIsIncreasing() public {

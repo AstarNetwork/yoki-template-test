@@ -2,8 +2,8 @@
 pragma solidity ^0.8.20;
 import "forge-std/console.sol";
 import "forge-std/Test.sol";
-import {TestMe} from "../src/Skylabs - YNFT/TestMe.sol";
-import {Config} from "../src/Skylabs - YNFT/Config.sol";
+import {TestMe} from "../src/Bitget/TestMe.sol";
+import {Config} from "../src/Bitget/Config.sol";
 
 contract BaseTemplateTest is Test {
     TestMe public testMe;
@@ -17,10 +17,10 @@ contract BaseTemplateTest is Test {
         you can use:
             testMe = new TestMe(address(this), address(this), "NAME", "SYMBOL", 1000, 1, "ipfs://example.com/");
         */
-        testMe = new TestMe("NAME", "SYMBOL", "ipfs://example.com/", "ipfs://example.com/", 100000000000000000, 10000);
+        testMe = new TestMe();
         config = new Config();
 
-        vm.deal(address(this), 100000 ether);
+        vm.deal(address(this), 100 ether);
     }
 
     // IMPORTANT: uncomment relevant line
@@ -32,9 +32,15 @@ contract BaseTemplateTest is Test {
             uint256 price = config.mintPrice();
             testMe.mint{value: price}(to, amount);
         */
-        uint256 price = config.mintPrice();
-        testMe.mint{value: price}(to, amount);
+        testMe.mint(to, amount);
     }
+
+    // IMPORTANT: comment this test is mint is non payable
+//    function test_noFreeMint() public {
+//        address alice = makeAddr("alice");
+//        vm.expectRevert();
+//        _callMint(alice, 1);
+//    }
 
     function test_EnsureMinterRole() public {
         testMe.grantRole(testMe.MINTER_ROLE(), address(this));
@@ -51,21 +57,19 @@ contract BaseTemplateTest is Test {
         address alice = makeAddr("alice");
         vm.deal(alice, 100 ether);
         testMe.revokeRole(testMe.MINTER_ROLE(), address(this));
-        uint256 balanceBefore = testMe.balanceOf(alice);
+        uint256 balanceBefore = testMe.balanceOf(alice, 0);
 
-        uint256 price = config.mintPrice();
         vm.expectRevert();
-        testMe.mint{value: price}(alice, 1);
-        assertEq(testMe.balanceOf(alice), balanceBefore);
+        _callMint(alice, 1);
+        assertEq(testMe.balanceOf(alice, 0), balanceBefore);
     }
 
     function test_UserCannotMint() public {
         address alice = makeAddr("alice");
-        uint256 price = config.mintPrice();
         vm.deal(alice, 100 ether);
         vm.expectRevert();
         vm.prank(alice);
-        testMe.mint{value: price}(alice, 1);
+        _callMint(alice, 1);
     }
 
     function test_MaxMintPerUser() public {
@@ -73,7 +77,7 @@ contract BaseTemplateTest is Test {
             return;
         }
         address alice = makeAddr("alice");
-        vm.deal(alice, 1 ether);
+        vm.deal(alice, 1000 ether);
         for (uint256 i = 0; i < config.maxMintPerUser(); i++) {
             _callMint(alice, 1);
         }
@@ -89,48 +93,26 @@ contract BaseTemplateTest is Test {
 
         for (uint256 i = 0; i < config.maxSupply(); i++) {
             address someUser = makeAddr(string(abi.encode(i)));
-            vm.deal(someUser, 1000000000000000000 wei);
+            vm.deal(someUser, 1 ether);
             _callMint(someUser, 1);
         }
-        uint256 price = config.mintPrice();
+
         address alice = makeAddr("alice");
         vm.expectRevert();
-        vm.deal(alice, 1000000000000000000 wei);
-        testMe.mint{value: price}(alice, 1);
-    }
-
-    function test_noFreeMint() public {
-        if (config.mintPrice() == 0) {
-            return;
-        }
-        address alice = makeAddr("alice");
-        vm.expectRevert();
-        testMe.mint{value: 0}(alice, 1);
-    }
-
-    function test_totalSupplyIsIncreasing() public {
-        address alice = makeAddr("alice");
-        testMe.grantRole(testMe.MINTER_ROLE(), address(this));
-        assertEq(testMe.totalSupply(), 0);
+        vm.deal(alice, 1 ether);
         _callMint(alice, 1);
-        assertEq(testMe.totalSupply(), 1);
     }
 
     function test_mint5AndPrintsTokenUri() public {
-        for (uint256 i = 1; i < 5; i++) {
+        for (uint256 i = 0; i < 5; i++) {
             address someUser = makeAddr(string(abi.encode(i)));
             vm.deal(someUser, 1 ether);
             _callMint(someUser, 1);
         }
-        for (uint256 i = 1; i < 5; i++) {
-            string memory tokenUri = testMe.tokenURI(i);
+        for (uint256 i = 0; i < 5; i++) {
+            string memory tokenUri = testMe.uri(i);
             console.log("Token URI: %s", tokenUri);
         }
-    }
-
-    function test_totalSupplyIsPublic() public {
-        uint256 supply = testMe.totalSupply();
-        console.log("Total Supply: %s", supply);
     }
 
     function test_owner() public {

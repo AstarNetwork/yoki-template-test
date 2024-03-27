@@ -2,8 +2,8 @@
 pragma solidity ^0.8.20;
 import "forge-std/console.sol";
 import "forge-std/Test.sol";
-import {TestMe} from "../src/Skylabs - YNFT/TestMe.sol";
-import {Config} from "../src/Skylabs - YNFT/Config.sol";
+import {TestMe} from "../src/Quickswap/TestMe.sol";
+import {Config} from "../src/Quickswap/Config.sol";
 
 contract BaseTemplateTest is Test {
     TestMe public testMe;
@@ -17,7 +17,7 @@ contract BaseTemplateTest is Test {
         you can use:
             testMe = new TestMe(address(this), address(this), "NAME", "SYMBOL", 1000, 1, "ipfs://example.com/");
         */
-        testMe = new TestMe("NAME", "SYMBOL", "ipfs://example.com/", "ipfs://example.com/", 100000000000000000, 10000);
+        testMe = new TestMe("NAME", "SYMBOL", "ipfs://example.com/", "ipfs://bafybeiegxej6xgtvxqnec66dv6j4xiupsq4f56kfgcqdmifxxebr4m4nf4/", "json", 1400000000000000, 140000000000, 100000, address(this));
         config = new Config();
 
         vm.deal(address(this), 100000 ether);
